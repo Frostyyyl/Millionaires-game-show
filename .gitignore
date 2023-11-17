@@ -1,7 +1,24 @@
-# Personal build settings folder
+# Prerequisites
+*.d
 
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Fortran module files
+*.mod
+*.smod
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Visual Studio Code
 .vscode/
-
-# Executable files folder
-
-Build/
