@@ -2,6 +2,6 @@
 
 .vscode/
 
-# Any executable files
+# Executable files folder
 
-*.exe
+Build/
