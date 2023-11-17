@@ -1,0 +1,7 @@
+# Personal build settings folder
+
+.vscode/
+
+# Any executable files
+
+*.exe
