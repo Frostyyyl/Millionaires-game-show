@@ -1,20 +1,35 @@
 #include <iostream>
-#include <SDL.h>
-#include <class.hpp>
+#include "SDL.h"
+#include "game.hpp"
 
-int main(int argv, char** args){
+const int WIDTH = 800, HEIGHT = 600;
+const int FRAMES_PER_SECOND = 60;
+const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
-    SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window *window = SDL_CreateWindow("title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+Game *game = nullptr;
 
-    SDL_RenderClear(renderer);
+int main( int argc, char* argv[] ){
 
-    SDL_RenderPresent(renderer);
+    Uint32 frameStart;
+    int frameTime;
 
-    SDL_Delay(300);
+    game = new Game();
+    game->init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
+    
+    while(game->running()) {
+        frameStart = SDL_GetTicks();
+        
+        game->handleEvent();
+        game->update();
+        game->render();
 
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if(FRAME_DELAY > frameTime) {
+            SDL_Delay(FRAME_DELAY - frameTime);
+        }
+    }
+    game->clean();
     return 0;
 }
