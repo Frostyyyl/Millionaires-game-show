@@ -14,7 +14,7 @@ public:
     void destroy(){ active = false; }
 };
 
-class Manager{
+class ObjectManager{
 private:
     std::vector<std::unique_ptr<Object>> objects;
 public:
@@ -24,7 +24,9 @@ public:
     void draw(){
         for(auto& obj : objects) obj->draw();
     }
-    Object& addObject(){
-        
+    template <typename T, typename... Args>
+    void addObject(Args&&... args) {
+        std::unique_ptr<T> object = std::make_unique<T>(std::forward<Args>(args)...);
+        objects.emplace_back(std::move(object));
     }
 };

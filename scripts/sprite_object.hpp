@@ -17,12 +17,13 @@ public:
         src.w = dest.w = 564;
         src.h = dest.h = 564;
     }
+    /* this is probably not needed now
     Sprite(int x, int y) : pos(x, y){
         src.x = dest.x = pos.getX();
         src.y = dest.y = pos.getY();
         src.w = dest.w = 564;
         src.h = dest.h = 564;
-    }
+    }*/
     void init(const char* filename){
         tex = TextureManager::LoadTexture(filename);
     }

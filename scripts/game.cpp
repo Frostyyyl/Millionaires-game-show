@@ -1,9 +1,10 @@
 #include "game.hpp"
+#include "object_system.hpp"
 #include "sprite_object.hpp"
 
 
 SDL_Renderer* Game::renderer = nullptr;
-Sprite s(0, 0);
+ObjectManager objectManager;
 
 Game::Game(){}
 
@@ -25,12 +26,14 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     renderer = SDL_CreateRenderer(window, -1, 0);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     isRunning = true;
-    s.init("dino.jpg");
+
+    //here is creating and adding objects to ObjectManager
+    objectManager.addObject<Sprite>("dino.jpg", 10, 10);
 }
 
 void Game::update(){
     //game update 
-    s.update();
+    objectManager.update();
 }
 
 void Game::handleEvent(){
@@ -50,7 +53,7 @@ void Game::handleEvent(){
 void Game::render(){
     SDL_RenderClear(renderer);
     //drawing everything here
-    s.draw();
+    objectManager.draw();
     SDL_RenderPresent(renderer);
 }
 
