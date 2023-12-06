@@ -1,7 +1,9 @@
 #include "game.hpp"
+#include "sprite_object.hpp"
 
 
 SDL_Renderer* Game::renderer = nullptr;
+Sprite s(0, 0);
 
 Game::Game(){}
 
@@ -23,10 +25,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     renderer = SDL_CreateRenderer(window, -1, 0);
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     isRunning = true;
+    s.init("dino.jpg");
 }
 
 void Game::update(){
     //game update 
+    s.update();
 }
 
 void Game::handleEvent(){
@@ -46,6 +50,7 @@ void Game::handleEvent(){
 void Game::render(){
     SDL_RenderClear(renderer);
     //drawing everything here
+    s.draw();
     SDL_RenderPresent(renderer);
 }
 
