@@ -1,7 +1,7 @@
 #pragma once
 #include <object_system.hpp>
 #include <texture_manager.hpp>
-#include "position_object.hpp"
+#include "position.hpp"
 #include <iostream>
 
 class Sprite : public Object{
@@ -24,9 +24,9 @@ public:
         src.w = dest.w = 564;
         src.h = dest.h = 564;
     }*/
-    void init(const char* filename){
-        tex = TextureManager::LoadTexture(filename);
-    }
+    // void init(const char* filename){
+    //     tex = TextureManager::LoadTexture(filename);
+    // }
     void draw() override{
         TextureManager::Draw(tex, src, dest);
     }

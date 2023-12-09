@@ -16,17 +16,15 @@ public:
 
 class ObjectManager{
 private:
-    std::vector<std::unique_ptr<Object>> objects;
+    std::vector<Object*> objects;
 public:
     void update(){
-        for(auto& obj : objects) obj->update(); 
+        for(auto& obj : objects) obj->update();
     }
     void draw(){
-        for(auto& obj : objects) obj->draw();
+        for(auto& obj : objects) if(obj->isActive()) obj->draw();
     }
-    template <typename T, typename... Args>
-    void addObject(Args&&... args) {
-        std::unique_ptr<T> object = std::make_unique<T>(std::forward<Args>(args)...);
-        objects.emplace_back(std::move(object));
+    void addObject(Object* obj){
+        objects.emplace_back(obj);
     }
 };
