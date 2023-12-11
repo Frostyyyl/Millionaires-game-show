@@ -28,7 +28,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     isRunning = true;
 
     //here is creating and adding objects to ObjectManager
-    Sprite* sprite = new Sprite("../images/dino.jpg", 10, 10);
+    Sprite* sprite = new Sprite("../images/button_spritesheet.png", 100, 20, 2, 1);
+    // Sprite* sprite = new Sprite("../images/dino.jpg", 220, 0, 1, 1);
     objectManager.addObject(sprite);
 }
 
