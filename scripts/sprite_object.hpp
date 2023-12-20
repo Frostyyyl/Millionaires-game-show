@@ -12,7 +12,7 @@ private:
     SDL_Texture* tex;
 public:
     // would be cool if we could get rid of these         V                      V
-    Sprite(const char* filename, int x, int y, int spritesheetWidth, int spritesheetHeight) : pos(x, y){
+    Sprite(const char* filename, int x, int y, int spritesheetWidth = 1, int spritesheetHeight = 1) : pos(x, y){
         this->spritesheetWidth = spritesheetWidth;
         this->spritesheetHeight = spritesheetHeight;
         tex = TextureManager::LoadTexture(filename);
