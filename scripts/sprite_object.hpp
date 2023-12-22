@@ -1,10 +1,10 @@
 #pragma once
-#include <object_system.hpp>
-#include <texture_manager.hpp>
+#include "object_system.hpp"
+#include "texture_manager.hpp"
 #include "position.hpp"
 
 class Sprite : public Object{
-private:
+protected: //protected cause i need it for button
     Position pos;
     int width, height; 
     int spritesheetWidth, spritesheetHeight;
