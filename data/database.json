@@ -1,25 +1,20 @@
-{
-    "tier": {
-        "easy": [
-            {
-                "question": "Why?",
-                "correct_answer": "Yes",
-                "incorrect_answers": ["No", "Two", "One"]
-            } 
-        ],
-        "medium": [
-            {
-                "question": "What?",
-                "correct_answer": "Everything",
-                "incorrect_answers": ["Nothing", "Hamster", "Strawberry"]
-            }
-        ],
-        "hard": [
-            {
-                "question": "Are you the strongest because you are Goje Satoru or are you Gojo Satoru because you are the strongest",
-                "correct_answer": "Suguru...",
-                "incorrect_answers": ["Satoru...", "Salmon", "Hollow purple"]
-            }
-        ]
+[
+    {
+        "question": "Why?",
+        "correct_answer": "Yes",
+        "incorrect_answers": ["No", "Two", "One"],
+        "tier": "easy"
+    },
+    {
+        "question": "What?",
+        "correct_answer": "Everything",
+        "incorrect_answers": ["Nothing", "Hamster", "Strawberry"],
+        "tier": "medium"
+    },
+    {
+        "question": "Are you the strongest because you are Goje Satoru or are you Gojo Satoru because you are the strongest",
+        "correct_answer": "Suguru...",
+        "incorrect_answers": ["Satoru...", "Salmon", "Hollow purple"],
+        "tier": "hard"
     }
-}
+]
