@@ -1,7 +1,9 @@
+#pragma once
+
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -39,14 +41,5 @@ std::vector<std::vector<struct Question>> loadJSON(const std::string filename){
     }else{
         std::cout << "Error. Couldn't open file: " << filename << std::endl;
         return questions;
-    }
-}
-
-bool checkAnswer(Question question, std::string chosenAnswer){
-    if (chosenAnswer == question.correctAnswer){
-        return true;
-    }
-    else {
-        return false;
     }
 }
