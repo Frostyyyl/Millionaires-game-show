@@ -1,10 +1,10 @@
 #pragma once
-#include <object_system.hpp>
-#include <texture_manager.hpp>
+#include "object_system.hpp"
+#include "texture_manager.hpp"
 #include "position.hpp"
 
 class Sprite : public Object{
-private:
+protected: //protected cause i need it for button
     Position pos;
     int width, height; 
     SDL_Rect src, dest;
@@ -39,16 +39,15 @@ public:
 };
 
 class Spritesheet : public Object{
-private:
+protected:
     Position pos;
     int width, height; 
     int spritesheetWidth, spritesheetHeight;
     SDL_Rect src, dest;
     SDL_Texture* tex;
 public:
-    Spritesheet(const char* filename, int x, int y, int spritesheetWidth, int spritesheetHeight) : pos(x, y){
-        this->spritesheetWidth = spritesheetWidth;
-        this->spritesheetHeight = spritesheetHeight;
+    Spritesheet(const char* filename, int x, int y, int spritesheetWidth, int spritesheetHeight) 
+    : pos(x, y), spritesheetWidth(spritesheetWidth), spritesheetHeight(spritesheetHeight){
         tex = TextureManager::LoadTexture(filename);
         SDL_QueryTexture(tex, NULL, NULL, &width, &height);
         src.x = (width / spritesheetWidth) * 0;     // during inicialization we set the sprite to first of a spritesheet  
@@ -61,9 +60,14 @@ public:
     void draw() override{
         TextureManager::Draw(tex, src, dest);
     }
-    // NOTE: sprite update of a spritesheet should be implemented below 
     void update() override{
         dest.x = pos.getX();
         dest.y = pos.getY();
-    };
+    }
+
+    // NOTE: when we will decide on the final form of the spritesheets this will probably have to be changed
+    void updateSprite(int row = 0, int col = 0){
+        src.x = (width / spritesheetWidth) * row;
+        src.y = (height / spritesheetHeight) * col;
+    }
 };
