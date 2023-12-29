@@ -2,11 +2,11 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "object_system.hpp"
-#include "sprite_object.hpp"
+#include "sprite_system.hpp"
 #include "input_manager.hpp"
 #include "button_object.hpp"
 #include "text_sprite.hpp"
-#include "mouse.hpp"
+#include "INCOMING.hpp"
 
 SDL_Rect Mouse::pointer;
 SDL_Renderer* Game::renderer = nullptr;

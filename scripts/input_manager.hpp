@@ -5,10 +5,11 @@
 #include "SDL.h"
 #include "game.hpp"
 #include "button_object.hpp"
+#include "INCOMING.hpp"
 
 class InputManager{
 private:
-    std::vector<Button*> buttons;
+    std::vector<ButtonBase*> buttons;
 public:
     void update(){
         switch(Game::event.type){
