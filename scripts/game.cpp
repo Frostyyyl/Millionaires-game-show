@@ -6,7 +6,9 @@
 #include "input_manager.hpp"
 #include "button_object.hpp"
 #include "text_sprite.hpp"
+#include "mouse.hpp"
 
+SDL_Rect Mouse::pointer;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
@@ -14,7 +16,6 @@ ObjectManager objectManager;
 InputManager inputManager; //wanted to make it static but failed ;/
 
 Game::Game(){}
-
 Game::~Game(){}
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height){
@@ -52,8 +53,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     // here is creating and adding objects to ObjectManager and InputManager
     // will probably need to change this later so it's more clear
     
+    Mouse* mouse = new Mouse();
     Button* button = new Button("images/button_spritesheet.png", 100, 300, 2, 1);
     TextSprite* text = new TextSprite("images/text_button_sprite.png", 100, 20, "fonts/a.ttf", "lol");
+
+    objectManager.addObject(mouse);
     objectManager.addObject(button);
     objectManager.addObject(text);
     inputManager.addButton(button);
