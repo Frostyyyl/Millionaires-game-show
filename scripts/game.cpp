@@ -5,13 +5,10 @@
 #include "sprite_system.hpp"
 #include "input_manager.hpp"
 #include "button_object.hpp"
-#include "text_sprite.hpp"
-#include "INCOMING.hpp"
 
 SDL_Rect Mouse::pointer;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
-
 ObjectManager objectManager;
 InputManager inputManager; //wanted to make it static but failed ;/
 
@@ -55,7 +52,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     
     Mouse* mouse = new Mouse();
     Button* button = new Button("images/button_spritesheet.png", 100, 300, 2, 1);
-    TextSprite* text = new TextSprite("images/text_button_sprite.png", 100, 20, "fonts/a.ttf", "lol");
+    TextSprite* text = new TextSprite("images/text_button_sprite.png", 100, 20, "fonts/a.ttf", "lol", 1, 1);
 
     objectManager.addObject(mouse);
     objectManager.addObject(button);

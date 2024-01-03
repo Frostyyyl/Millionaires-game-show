@@ -1,7 +1,6 @@
 #pragma once
-
-#include "SDL.h"
 #include <iostream>
+#include "SDL.h"
 
 class Game{
 public:

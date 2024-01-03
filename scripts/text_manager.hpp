@@ -1,7 +1,6 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_TTF.h"
-#include "game.hpp"
 
 class TextManager{
 public:
