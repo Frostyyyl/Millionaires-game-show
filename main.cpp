@@ -7,22 +7,19 @@ const int FRAMES_PER_SECOND = 60;
 const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
 
-Game *game = nullptr;
-
 int main( int argc, char* argv[] ){
 
     Uint32 frameStart;
     int frameTime;
 
-    game = new Game();
-    game->init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
+    Game::getInstance().init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
     
-    while(game->running()) {
+    while(Game::getInstance().running()) {
         frameStart = SDL_GetTicks();
         
-        game->handleEvent();
-        game->update();
-        game->render();
+        Game::getInstance().handleEvent();
+        Game::getInstance().update();
+        Game::getInstance().render();
 
         frameTime = SDL_GetTicks() - frameStart;
 
@@ -30,6 +27,6 @@ int main( int argc, char* argv[] ){
             SDL_Delay(FRAME_DELAY - frameTime);
         }
     }
-    game->clean();
+    Game::getInstance().clean();
     return 0;
 }

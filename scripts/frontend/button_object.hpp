@@ -1,6 +1,7 @@
 #pragma once
 #include "object_system.hpp"
 #include "sprite_system.hpp"
+#include "bridge.hpp"
 
 static bool ANSWER_SELECTED = false;
 
@@ -61,6 +62,7 @@ public:
         if (!ANSWER_SELECTED){
             ANSWER_SELECTED = true;
             spritesheet.updateSprite(1, 0);
+            Bridge::getInstance().addMessage(FRONT_UPDATE, "Lukasz ssie pale essa");
         }
     }
     void draw() override{
