@@ -1,6 +1,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "game.hpp"
+#include "questions_handler.hpp"
 
 const int WIDTH = 1000, HEIGHT = 700;
 const int FRAMES_PER_SECOND = 60;
@@ -11,6 +12,11 @@ int main( int argc, char* argv[] ){
 
     Uint32 frameStart;
     int frameTime;
+    QuestionsHandler question("data/database.json");
+
+    std::pair<std::string, std::vector<std::string>> lol = question.getNextQuestion(0);
+
+    std::cout << lol.first << std::endl;
 
     Game::getInstance().init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
     
