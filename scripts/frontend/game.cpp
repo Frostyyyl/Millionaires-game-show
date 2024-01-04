@@ -52,25 +52,26 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     objectManager.addObject(mouse);
 
     Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
-    TextButton* buttonA = new TextButton("images/text_button_sprite.png", 60, 425, "A.Hungary");
-    TextButton* buttonB = new TextButton("images/text_button_sprite.png", 515, 425, "B.What is the capital of France?");
-    TextButton* buttonC = new TextButton("images/text_button_sprite.png", 60, 555, "C.Pekin");
-    TextButton* buttonD = new TextButton("images/text_button_sprite.png", 515, 555, "D.Madriypt");
-    QuestionSprite* question = new QuestionSprite("images/question_sprite.png", 60, 295
-        ,"What is the capital of France? What? Who? Where?");
+    QuestionSprite* question = new QuestionSprite("images/question_sprite.png", 60, 395, "What is the capital of France?");
 
-    objectManager.addObject(button);
-    objectManager.addObject(buttonA);
-    objectManager.addObject(buttonB);
-    objectManager.addObject(buttonC);
-    objectManager.addObject(buttonD);
+    std::vector<TextButton*> answers;
+    TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "Hungary", "A");
+    TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "Francja nie istnieje - poprawna odpowiedz", "B");
+    TextButton* C = new TextButton("images/text_button_sprite.png", 60, 605, "Pekin", "C");
+    TextButton* D = new TextButton("images/text_button_sprite.png", 515, 605, "Madrid", "D");
+    answers.emplace_back(A);
+    answers.emplace_back(B);
+    answers.emplace_back(C);
+    answers.emplace_back(D);
+
+    for (auto & i : answers){
+        objectManager.addObject(i);
+        inputManager.addButton(i);  
+    }
+
     objectManager.addObject(question);
-
+    objectManager.addObject(button);
     inputManager.addButton(button);
-    inputManager.addButton(buttonA);
-    inputManager.addButton(buttonB);
-    inputManager.addButton(buttonC);
-    inputManager.addButton(buttonD);
 }
 
 void Game::update(){

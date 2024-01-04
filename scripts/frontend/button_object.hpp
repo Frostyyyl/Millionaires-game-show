@@ -48,8 +48,8 @@ class TextButton : public ButtonBase{
 private:
     AnswerSprite spritesheet;
 public:
-    TextButton(const char* filename, int x, int y, const char* text, int numOfColumns = 2, int numOfRows = 1)
-    : ButtonBase(x, y), spritesheet(filename, x, y, text, numOfColumns, numOfRows){}
+    TextButton(const char* filename, int x, int y, const char* text, const char* character, int numOfColumns = 2, int numOfRows = 1)
+    : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows){}
 
     bool isClicked(int x, int y){
         if(pos.x < x && spritesheet.getWidth() + pos.x > x && pos.y < y && spritesheet.getHeight() + pos.y > y){
@@ -62,6 +62,7 @@ public:
             ANSWER_SELECTED = true;
             spritesheet.updateSprite(1, 0);
         }
+        spritesheet.updateSprite(1, 0);
     }
     void draw() override{
         spritesheet.draw();
