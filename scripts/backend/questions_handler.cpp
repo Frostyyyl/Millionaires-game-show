@@ -29,13 +29,6 @@ std::vector<std::vector<struct Question>> loadJSON(const std::string filename){
     }
 }
 
-void QuestionsHandler::drawQuestion(){
-    std::uniform_int_distribution<int> rng(0, availableQuestions[tier].size()-1);
-    int questionIndex = rng(g);
-    currentQuestion = availableQuestions[tier][questionIndex];
-    availableQuestions[tier].erase(availableQuestions[tier].begin() + questionIndex);
-}
-
 QuestionsHandler::QuestionsHandler(const std::string filename){
     if (Instance!=nullptr){
         std::cout << "ERROR: Questions Handler already exists!" << std::endl;
@@ -43,9 +36,17 @@ QuestionsHandler::QuestionsHandler(const std::string filename){
     }
     Instance = this;
     questions = loadJSON(filename);
+    resetQuestions();
 }
 
 QuestionsHandler::~QuestionsHandler(){}
+
+void QuestionsHandler::drawQuestion(){
+    std::uniform_int_distribution<int> rng(0, availableQuestions[tier].size()-1);
+    int questionIndex = rng(g);
+    currentQuestion = availableQuestions[tier][questionIndex];
+    availableQuestions[tier].erase(availableQuestions[tier].begin() + questionIndex);
+}
 
 QuestionsHandler QuestionsHandler::getInstance(){
     return *Instance;
@@ -79,7 +80,8 @@ std::pair<std::string, std::vector<std::string>> QuestionsHandler::getNextQuesti
     }
     std::shuffle(answers.begin(), answers.end(), g);
     availableAnswers = answers;
-    return std::pair<std::string, std::vector<std::string>> (questionText, answers);
+    std::pair<std::string, std::vector<std::string>> res = std::make_pair(questionText, answers);
+    return res;
 }
 
 void QuestionsHandler::setAvailableAnswers(std::vector<std::string> answers){
@@ -92,6 +94,12 @@ std::vector<std::string> QuestionsHandler::getAvailableAnswers(){
 
 int QuestionsHandler::getTier(){
     return tier;
+}
+
+void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
+    if(msg->getMessageType() == BACK_UPDATE){
+        std::cout << "Essa bitch" << std::endl;
+    }
 }
 
 //May or may not work (It's weird)

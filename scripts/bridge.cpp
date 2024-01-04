@@ -15,7 +15,7 @@ void Bridge::update() {
     while (!messages.empty()) {
         auto uniqueMessagePtr = std::move(messages.front());
 
-        uniqueMessagePtr->print();
+        //uniqueMessagePtr->print(); // here is printing just in case
 
         if (uniqueMessagePtr->getMessageType() == FRONT_UPDATE) {
             Game::getInstance().processMessage(std::move(uniqueMessagePtr));

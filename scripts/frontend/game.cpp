@@ -53,7 +53,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     // here is creating and adding objects to ObjectManager and InputManager
     // will probably need to change this later so it's more clear
     
-    Mouse* mouse = new Mouse();     // 🧀🐁
+    Mouse* mouse = new Mouse();     // 🐁 sorry I ate the cheeeeese
     objectManager.addObject(mouse);
 
     Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
@@ -127,7 +127,7 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
             std::cout << "Essa bitch" << std::endl;
         }
         if(auto message = dynamic_cast<Message<const char*>*>(msg.get())){
-            std::cout << "to ma tekst" << std::endl;
+            std::cout << "to ma tekst: " << std::get<const char*>(message->arguments) << std::endl;
         }
         
 }

@@ -7,7 +7,9 @@
 #include <utility>
 #include <fstream>
 #include <vector>
+#include <memory>
 #include "json.hpp"
+#include "message.hpp"
 
 using json = nlohmann::json;
 struct Question {
@@ -37,6 +39,7 @@ public:
     QuestionsHandler(const std::string filename);
 	~QuestionsHandler();
     static QuestionsHandler getInstance();
+
     bool checkAnswer(std::string chosenAnswer);
     void resetQuestions();
     Question getQuestion();
@@ -44,6 +47,8 @@ public:
     void setAvailableAnswers(std::vector<std::string> answers);
     std::vector<std::string> getAvailableAnswers();
     int getTier();
+
+    void processMessage(std::unique_ptr<BaseMessage> msg);
 };
 
 class Lifeline{
