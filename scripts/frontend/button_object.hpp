@@ -2,7 +2,7 @@
 #include "object_system.hpp"
 #include "sprite_system.hpp"
 
-bool ANSWER_SELECTED = false;
+static bool ANSWER_SELECTED = false;
 
 class ButtonBase : public Object{
 public:
@@ -26,7 +26,7 @@ public:
         return false;
     }
     void onClick(){
-        spritesheet.updateSprite(1, 0);
+        std::cout << "Button was clicked " << std::endl; 
     }
     void draw() override{
         spritesheet.draw();
@@ -46,10 +46,10 @@ public:
 
 class TextButton : public ButtonBase{
 private:
-    TextSprite spritesheet;
+    AnswerSprite spritesheet;
 public:
-    TextButton(const char* filename, int x, int y, const char* fontFilename , const char* text, int fontSize, int numOfColumns = 2, int numOfRows = 1)
-    : ButtonBase(x, y), spritesheet(filename, x, y, fontFilename, text, fontSize, numOfColumns, numOfRows){}
+    TextButton(const char* filename, int x, int y, const char* text, int numOfColumns = 2, int numOfRows = 1)
+    : ButtonBase(x, y), spritesheet(filename, x, y, text, numOfColumns, numOfRows){}
 
     bool isClicked(int x, int y){
         if(pos.x < x && spritesheet.getWidth() + pos.x > x && pos.y < y && spritesheet.getHeight() + pos.y > y){
