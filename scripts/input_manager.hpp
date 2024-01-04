@@ -28,7 +28,7 @@ public:
             break;
         }
     }
-    void addButton(Button* button){
+    void addButton(ButtonBase* button){
         buttons.emplace_back(button);
     }
 };

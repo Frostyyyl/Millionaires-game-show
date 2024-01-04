@@ -2,7 +2,7 @@
 #include "SDL.h"
 #include "game.hpp"
 
-const int WIDTH = 800, HEIGHT = 600;
+const int WIDTH = 1000, HEIGHT = 700;
 const int FRAMES_PER_SECOND = 60;
 const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 

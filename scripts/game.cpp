@@ -26,15 +26,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
         isRunning = false;
         exit(1);
     }
-    // this part crashes whole program idk why (NOTE: skill issue)
     if (TTF_Init() < 0) {
         std::cout << "TTF_Init error: " << TTF_GetError() << std::endl;
         isRunning = false;
         exit(1);
     }
-    // else {
-    //     std::cout << "TTF_Init successful!" << std::endl;
-    // }
 
     window = SDL_CreateWindow(title, xpos, ypos, width, height, SDL_WINDOW_SHOWN);
     if (window == NULL){
@@ -51,13 +47,28 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     // will probably need to change this later so it's more clear
     
     Mouse* mouse = new Mouse();
-    Button* button = new Button("images/button_spritesheet.png", 100, 300, 2, 1);
-    TextSprite* text = new TextSprite("images/text_button_sprite.png", 100, 20, "fonts/a.ttf", "lol", 1, 1);
+
+    Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
+    TextButton* button_A = new TextButton("images/text_button_sprite.png", 60, 425, "fonts/mont-heavy.otf", "Hungary", 84, 2, 1);
+    TextButton* button_B = new TextButton("images/text_button_sprite.png", 515, 425, 
+            "fonts/mont-heavy.otf", "What is the capital of France?", 40, 2, 1);
+    TextButton* button_C = new TextButton("images/text_button_sprite.png", 60, 555, "fonts/mont-heavy.otf", "Pekin", 72, 2, 1);
+    TextButton* button_D = new TextButton("images/text_button_sprite.png", 515, 555, "fonts/mont-heavy.otf", "Madrit", 72, 2, 1);
+    TextSprite* question = new TextSprite("images/question_sprite.png", 60, 295, 
+            "fonts/mont-heavy.otf", "What is the capital of France? What is mars, earth or even the sun? ", 40, 1, 1);
 
     objectManager.addObject(mouse);
     objectManager.addObject(button);
-    objectManager.addObject(text);
+    objectManager.addObject(button_A);
+    objectManager.addObject(button_B);
+    objectManager.addObject(button_C);
+    objectManager.addObject(button_D);
+    objectManager.addObject(question);
     inputManager.addButton(button);
+    inputManager.addButton(button_A);
+    inputManager.addButton(button_B);
+    inputManager.addButton(button_C);
+    inputManager.addButton(button_D);
 }
 
 void Game::update(){

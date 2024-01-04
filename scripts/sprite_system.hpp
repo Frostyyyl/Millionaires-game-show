@@ -64,16 +64,25 @@ public:
 };
 
 class TextSprite : public Spritesheet{
-private:
+protected:
     std::string text;
+    int fontSize;
     TTF_Font* font;
+    SDL_Rect textDest = dest;
 public:
-    TextSprite(const char* filename, int x, int y, const char* font_filename , const char* text, int numOfColumns, int numOfRows) 
-            : Spritesheet(filename, x, y, numOfColumns, numOfRows), text(text){
-        font = TextManager::LoadFont(font_filename, 20);
+    TextSprite(const char* filename, int x, int y, const char* fontFilename , const char* text, int fontSize, int numOfColumns, int numOfRows) 
+            : Spritesheet(filename, x, y, numOfColumns, numOfRows), text(text), fontSize(fontSize){
+        font = TextManager::LoadFont(fontFilename, fontSize);
+        TTF_SizeText(font, this->text.c_str(), &textDest.w, &textDest.h);
+        textDest.x += 5;
+        textDest.y += 8;
+        if (textDest.w > dest.w - 10){
+            textDest.w = dest.w - 10;
+            textDest.h = dest.h;
+        }
     }
     void drawText() {
-        SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), {255, 255, 255});
+        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), {12, 12, 12}, textDest.w);
         if (!textSurface) {
             std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
         }
@@ -81,7 +90,7 @@ public:
         if (!textTexture) {
             std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
         }
-        SDL_RenderCopy(Game::renderer, textTexture, &src, &dest);
+        SDL_RenderCopy(Game::renderer, textTexture, NULL, &textDest);
         SDL_FreeSurface(textSurface);
         SDL_DestroyTexture(textTexture);
     }
