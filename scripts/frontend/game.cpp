@@ -16,6 +16,11 @@ InputManager inputManager;
 Game::Game(){}
 Game::~Game(){}
 
+Game& Game::getInstance(){
+    static Game INSTANCE;
+    return INSTANCE;
+}
+
 void Game::init(const char* title, int xpos, int ypos, int width, int height){
     if(SDL_Init(SDL_INIT_EVERYTHING)){
         isRunning = false;
@@ -76,6 +81,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
 
 void Game::update(){
     //game update 
+    Bridge::getInstance().update();
     objectManager.update();
 }
 
@@ -114,4 +120,14 @@ void Game::quit(){
 
 bool Game::running(){
     return isRunning;
+}
+
+void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
+        if(msg->getMessageType() == FRONT_UPDATE){
+            std::cout << "Essa bitch" << std::endl;
+        }
+        if(auto message = dynamic_cast<Message<const char*>*>(msg.get())){
+            std::cout << "to ma tekst" << std::endl;
+        }
+        
 }

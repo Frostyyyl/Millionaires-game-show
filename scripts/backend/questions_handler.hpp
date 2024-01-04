@@ -1,11 +1,28 @@
 #pragma once
 
 #include <chrono>
+#include <iostream>
 #include <random>
 #include <string>
 #include <utility>
+#include <fstream>
 #include <vector>
-#include "questions_loader.hpp"
+#include "json.hpp"
+
+using json = nlohmann::json;
+struct Question {
+    std::string question;
+    std::string correctAnswer;
+    std::string incorrectAnswers[3];
+};
+
+/*
+    loadJSON returns all questions:
+    easy questions - questions[0]
+    medium questions - questions[1]
+    hard questions - questions[2]
+*/
+std::vector<std::vector<struct Question>> loadJSON(const std::string filename);
 
 class QuestionsHandler{
 private:
@@ -35,7 +52,7 @@ protected:
 public:
     Lifeline();
     ~Lifeline();
-    virtual std::vector<std::string> interact();
+    virtual std::vector<std::string> interact() {return std::vector<std::string>();};
 };
 
 class Half:public Lifeline{
