@@ -62,10 +62,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
     question = new QuestionSprite("images/question_sprite.png", 60, 395, "What is the capital of France?");
 
-    TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "Hungary", "A");
-    TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "Francja nie istnieje - poprawna odpowiedz", "B");
-    TextButton* C = new TextButton("images/text_button_sprite.png", 60, 605, "Pekin", "C");
-    TextButton* D = new TextButton("images/text_button_sprite.png", 515, 605, "Madrid", "D");
+    TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "Hungary", "A", 0);
+    TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "Francja nie istnieje - poprawna odpowiedz", "B", 1);
+    TextButton* C = new TextButton("images/text_button_sprite.png", 60, 605, "Pekin", "C", 2);
+    TextButton* D = new TextButton("images/text_button_sprite.png", 515, 605, "Madrid", "D", 3);
     answers.emplace_back(A);
     answers.emplace_back(B);
     answers.emplace_back(C);
@@ -130,8 +130,8 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
     switch (type)
     {
     case FRONT_NEXT_QUESTION:
-        if (auto stringVectorMsg = dynamic_cast<Message<std::pair<std::string, std::vector<std::string>>>*>(msg.get())) {
-            auto arguments = std::get<0>(stringVectorMsg->arguments);
+        if (auto questionMsg = dynamic_cast<Message<std::pair<std::string, std::vector<std::string>>>*>(msg.get())) {
+            auto arguments = std::get<0>(questionMsg->arguments);
             for(int i = 0; i < 4; i++) {
                 answers[i]->loadAnswer(arguments.second[i]);
             }
@@ -140,6 +140,7 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
         else{
             std::cerr << "Error while reading Question from Message" << std::endl;
         }
+        ANSWER_SELECTED = false;
         break;
     case FRONT_GAME_OVER:
         std::cout << "wrong answer mate" << std::endl;

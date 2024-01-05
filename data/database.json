@@ -4,6 +4,26 @@
             "question": "Why?",
             "correct_answer": "Yes",
             "incorrect_answers": ["No", "Two", "One"]
+        },
+        {
+            "question": "Who is the smelliest?",
+            "correct_answer": "Lukasz",
+            "incorrect_answers": ["Kasia", "Mikolaj", "Freddy Fazbear"]
+        },
+        {
+            "question": "Who is against The World?",
+            "correct_answer": "Scott Pilgrim",
+            "incorrect_answers": ["Ramona Flowers", "Knives Chau", "Matthew Patel"]
+        },
+        {
+            "question": "Which day did shibuya incident took place?",
+            "correct_answer": "31.10",
+            "incorrect_answers": ["24.12", "11.11", "6.9"]
+        },
+        {
+            "question": "What is 35 + 34?",
+            "correct_answer": "69 HEHE",
+            "incorrect_answers": ["2137", "3.14", "111"]
         }
     ],
     "medium": [
@@ -11,6 +31,21 @@
             "question": "What?",
             "correct_answer": "Everything",
             "incorrect_answers": ["Nothing", "Hamster", "Strawberry"]
+        },
+        {
+            "question": "Which Spider-Man actor was the first out of mentioned below",
+            "correct_answer": "Tobey Maguire",
+            "incorrect_answers": ["Tom Holland", "Andrew Garfield", "Shameik Moore"]
+        },
+        {
+            "question": "Who created \"My Love Mine All Mine\"?",
+            "correct_answer": "Mitski",
+            "incorrect_answers": ["Lana Del Ray", "Taylor Swift", "Thom Yorke"]
+        },
+        {
+            "question": "What is the best \"OK Computer\" song?",
+            "correct_answer": "Paranoid Android",
+            "incorrect_answers": ["Let Down", "Exit music (for a film)", "Subterranean Homesick Alien"]
         }
     ],
     "hard": [
@@ -18,6 +53,16 @@
             "question": "Are you the strongest because you are Goje Satoru or are you Gojo Satoru because you are the strongest",
             "correct_answer": "Suguru...",
             "incorrect_answers": ["Satoru...", "Salmon", "Hollow purple"]
+        },
+        {
+            "question": "What LED diode color is the best?",
+            "correct_answer": "Blue",
+            "incorrect_answers": ["Red", "Green", "Yellow"]
+        },
+        {
+            "question": "Who is the sigma?",
+            "correct_answer": "Szymon Holownia",
+            "incorrect_answers": ["Krzysztof Bosak", "Grzegorz Braun", "Robert Biedron"]
         }
     ]
 }

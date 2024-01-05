@@ -39,7 +39,7 @@ private:
 public:
     QuestionsHandler(const std::string filename);
 	~QuestionsHandler();
-    static QuestionsHandler getInstance();
+    static QuestionsHandler& getInstance();
     bool checkAnswer(int index);
     void resetQuestions();
     Question getQuestion();

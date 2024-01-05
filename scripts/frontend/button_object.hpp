@@ -50,9 +50,10 @@ public:
 class TextButton : public ButtonBase{
 private:
     AnswerSprite spritesheet;
+    int Id;
 public:
-    TextButton(const char* filename, int x, int y, std::string text, std::string character, int numOfColumns = 2, int numOfRows = 1)
-    : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows){}
+    TextButton(const char* filename, int x, int y, std::string text, std::string character, int id, int numOfColumns = 2, int numOfRows = 1)
+    : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows), Id(id){}
 
     bool isClicked(int x, int y){
         if(pos.x < x && spritesheet.getWidth() + pos.x > x && pos.y < y && spritesheet.getHeight() + pos.y > y){
@@ -64,7 +65,7 @@ public:
         if (!ANSWER_SELECTED){
             ANSWER_SELECTED = true;
             spritesheet.updateSprite(1, 0);
-            Bridge::getInstance().addMessage(BACK_ANSWER, 1);
+            Bridge::getInstance().addMessage(BACK_ANSWER, Id);
         }
     }
     void draw() override{

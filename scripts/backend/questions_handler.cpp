@@ -49,7 +49,7 @@ void QuestionsHandler::drawQuestion(){
     availableQuestions[tier].erase(availableQuestions[tier].begin() + questionIndex);
 }
 
-QuestionsHandler QuestionsHandler::getInstance(){
+QuestionsHandler& QuestionsHandler::getInstance(){
     return *Instance;
 }
 
@@ -115,12 +115,30 @@ int QuestionsHandler::getQuestionCounter(){
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
-    if(type == BACK_START_GAME){ // i will change it to switch statement
-        // for now next question cause we dont have startr menu
-        std::cout << "lol" << std::endl;
+    if(type == BACK_START_GAME){ // have to be ifs cause of declarations of variables
         std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-        std::cout << res.first << std::endl;
-        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res); 
+        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res); // for now next question cause we dont have start menu
+    }
+    else if(type == BACK_ANSWER){
+        if (auto answerMsg = dynamic_cast<Message<int>*>(msg.get())) {
+            int ans = std::get<0>(answerMsg->arguments);
+            if(checkAnswer(ans)){
+                if(questionCounter == 10){ // if game completed
+                    std::cout << "game won" << std::endl;
+                }
+                else{
+                    std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
+                    Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res);
+                }
+            }
+            else{
+                std::cout << "wrong answer" << std::endl;
+                Bridge::getInstance().addMessage(FRONT_GAME_OVER);
+            }
+        }
+        else{
+            std::cerr << "Error while reading Answer from Message" << std::endl;
+        }
     }
 }
 
