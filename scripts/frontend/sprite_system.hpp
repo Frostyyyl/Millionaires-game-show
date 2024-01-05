@@ -64,107 +64,86 @@ public:
 
 class QuestionSprite : public Spritesheet{
 private: 
-    std::string text;
+    Text question;
     TTF_Font* font;
-    SDL_Rect textDest = dest;
+    SDL_Texture* textTexture;
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -4;
 public:
-    QuestionSprite(const char* filename, int x, int y, const char* text, int numOfColumns = 1, int numOfRows = 1) 
-            : Spritesheet(filename, x, y, numOfColumns, numOfRows), text(text){
+    QuestionSprite(const char* filename, int x, int y, const char* questionText, int numOfColumns = 1, int numOfRows = 1) 
+            : Spritesheet(filename, x, y, numOfColumns, numOfRows){
         
-        textDest.x += MOVE_HORIZONTALLY;
+        question.dest.x += MOVE_HORIZONTALLY;
+        
+        loadQuestion(questionText);
+    }
+    void loadQuestion(const char* answerText){
+        question.text = answerText;
+
         font = textManager.getFont46();
-        TTF_SizeText(font, text, &textDest.w, &textDest.h);
-        if (textDest.w > dest.w - MOVE_HORIZONTALLY * 2){
-            font = textManager.getFont32();
-            TTF_SizeText(font, text, &textDest.w, &textDest.h);
-            if (textDest.w > (dest.w - MOVE_HORIZONTALLY * 2) * 2 - 50){
+        TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
+        if (question.dest.w > dest.w - MOVE_HORIZONTALLY * 2){
+            font = textManager.getFont30();
+            TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
+            if (question.dest.w > (dest.w - MOVE_HORIZONTALLY * 2) * 2 - 50){
                 font = textManager.getFont21();
-                TTF_SizeText(font, text, &textDest.w, &textDest.h);
+                TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
             }
-            if (textDest.w > dest.w - MOVE_HORIZONTALLY * 2){
-                textDest.w = dest.w - MOVE_HORIZONTALLY * 2;
-                textDest.h *= 2;
+            if (question.dest.w > dest.w - MOVE_HORIZONTALLY * 2){
+                question.dest.w = dest.w - MOVE_HORIZONTALLY * 2;
+                question.dest.h *= 2;
             }
         }
         // center the text (depending on the font might have to change the value of MOVE_VERTICALLY)
-        textDest.y += (dest.h / 2) - (textDest.h / 2) + MOVE_VERTICALLY;
-    }
-    void drawText() {
-        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), {12, 12, 12}, textDest.w);
-        if (!textSurface) {
-            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
-        }
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(Game::renderer, textSurface);
-        if (!textTexture) {
-            std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
-        }
-        SDL_RenderCopy(Game::renderer, textTexture, NULL, &textDest);
-        SDL_FreeSurface(textSurface);
-        SDL_DestroyTexture(textTexture);
+        question.dest.y = (dest.h / 2) - (question.dest.h / 2) + MOVE_VERTICALLY;
+
+        textTexture = textManager.loadText(font, question, dest);
     }
     void draw() override{
         TextureManager::Draw(tex, src, dest);
-        drawText();
+        textManager.draw(textTexture, dest);
     }
 };
 
 class AnswerSprite : public Spritesheet{
 private:
-    std::string character;
-    std::string text;
+    Text answer;
+    Text character;
     TTF_Font* font;
-    SDL_Rect textDest = dest;
-    SDL_Rect charDest = dest;
+    SDL_Texture* textTexture;
     static const int ALIGN = 3;
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -3;
 public:
-    AnswerSprite(const char* filename, int x, int y, const char* text, const char* character, int numOfColumns = 1, int numOfRows = 1) 
-            : Spritesheet(filename, x, y, numOfColumns, numOfRows), character(character), text(text){
+    AnswerSprite(const char* filename, int x, int y, const char* answerText, const char* symbol, int numOfColumns = 1, int numOfRows = 1) 
+            : Spritesheet(filename, x, y, numOfColumns, numOfRows){
     
-        this->character.append(":");
-        TTF_SizeText(textManager.getFont21(), this->character.c_str(), &charDest.w, &charDest.h);
+        character.text = symbol + (std::string)":";
+
+        TTF_SizeText(textManager.getFont21(), character.text.c_str(), &character.dest.w, &character.dest.h);
+        character.dest.x += MOVE_HORIZONTALLY;
+        character.dest.y += (dest.h / 2) - (character.dest.h / 2) + MOVE_VERTICALLY;
+        answer.dest.x += MOVE_HORIZONTALLY * 2 + character.dest.w;
+
+        loadAnswer(answerText);
+    }
+    void loadAnswer(const char* answerText){
+        answer.text = answerText;
+
         font = textManager.getFont21();
-        charDest.x += MOVE_HORIZONTALLY;
-        textDest.x += MOVE_HORIZONTALLY * 2 + charDest.w;
-        TTF_SizeText(font, text, &textDest.w, &textDest.h);
-        if (textDest.w > dest.w - MOVE_HORIZONTALLY * 3 - charDest.w){
+        TTF_SizeText(font, answer.text.c_str(), &answer.dest.w, &answer.dest.h);
+        if (answer.dest.w > dest.w - MOVE_HORIZONTALLY * 3 - character.dest.w){
             font = textManager.getFont16();
-            TTF_SizeText(font, text, &textDest.w, &textDest.h);
-        }
-        if (font == textManager.getFont16()){
-            textDest.y += ALIGN;
+            TTF_SizeText(font, answer.text.c_str(), &answer.dest.w, &answer.dest.h);
         }
         // center the text (depending on the font might have to change the value of MOVE_VERTICALLY)
-        charDest.y += (dest.h / 2) - (charDest.h / 2) + MOVE_VERTICALLY;
-        textDest.y += (dest.h / 2) - (textDest.h / 2) + MOVE_VERTICALLY;
+        answer.dest.y = (dest.h / 2) - (answer.dest.h / 2) + MOVE_VERTICALLY;
+    
+        textTexture = textManager.loadText(font, answer, character, dest);
     }
-    void drawText() {
-        SDL_Surface* charSurface = TTF_RenderText_Blended_Wrapped(textManager.getFont21(), character.c_str(), {255, 15, 76}, charDest.w);
-        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, text.c_str(), {12, 12, 12}, textDest.w);
-        if (!textSurface) {
-            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
-        } if (!charSurface) {
-            std::cerr << "Failed to render character surface: " << TTF_GetError() << std::endl;
-        }
-        SDL_Texture* charTexture = SDL_CreateTextureFromSurface(Game::renderer, charSurface);
-        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(Game::renderer, textSurface);
-        if (!textTexture) {
-            std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
-        } if (!charTexture) {
-            std::cerr << "Failed to create character texture: " << SDL_GetError() << std::endl;
-        }
-        SDL_RenderCopy(Game::renderer, charTexture, NULL, &charDest);
-        SDL_RenderCopy(Game::renderer, textTexture, NULL, &textDest);
-        SDL_FreeSurface(charSurface);
-        SDL_DestroyTexture(textTexture);
-        SDL_FreeSurface(textSurface);
-        SDL_DestroyTexture(textTexture);
-    }
+
     void draw() override{
         TextureManager::Draw(tex, src, dest);
-        drawText();
+        textManager.draw(textTexture, dest);
     }
 };

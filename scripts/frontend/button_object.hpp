@@ -33,15 +33,16 @@ public:
         spritesheet.draw();
     }
     void update() override{
-        // as long as not clicked change accordingly to if we hover or not
-        
         if (SDL_HasIntersection(&spritesheet.getPosition(), &Mouse::getPosition())){
             spritesheet.updateSprite(1, 0);
         } else {
             spritesheet.updateSprite(0, 0);
         } 
-        
         spritesheet.update();
+    }
+    void destroy(){
+        spritesheet.destroy();
+        this->destroy();
     }
 };
 
@@ -64,7 +65,6 @@ public:
             spritesheet.updateSprite(1, 0);
             Bridge::getInstance().addMessage(FRONT_UPDATE, "Lukasz ssie pale essa");
         }
-        spritesheet.updateSprite(1, 0);
     }
     void draw() override{
         spritesheet.draw();
@@ -79,5 +79,12 @@ public:
             } 
         }
         spritesheet.update();
+    }
+    void loadAnswer(const char* answerText){
+        spritesheet.loadAnswer(answerText);
+    }
+    void destroy(){
+        spritesheet.destroy();
+        this->destroy();
     }
 };
