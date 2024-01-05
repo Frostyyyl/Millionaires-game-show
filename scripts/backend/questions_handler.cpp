@@ -53,8 +53,8 @@ QuestionsHandler QuestionsHandler::getInstance(){
     return *Instance;
 }
 
-bool QuestionsHandler::checkAnswer(std::string chosenAnswer){
-    if (chosenAnswer == currentQuestion.correctAnswer){
+bool QuestionsHandler::checkAnswer(int index){
+    if (availableAnswers[index] == currentQuestion.correctAnswer){
         return true;
     }
     else {
@@ -92,8 +92,8 @@ std::pair<std::string, std::vector<std::string>> QuestionsHandler::getNextQuesti
     }
     std::shuffle(answers.begin(), answers.end(), g);
     availableAnswers = answers;
-    std::pair<std::string, std::vector<std::string>> res = std::make_pair(questionText, answers);
-    return res;
+    std::pair<std::string, std::vector<std::string>> questionPair = std::make_pair(questionText, answers);
+    return questionPair;
 }
 
 void QuestionsHandler::setAvailableAnswers(std::vector<std::string> answers){

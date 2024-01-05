@@ -40,7 +40,7 @@ public:
     QuestionsHandler(const std::string filename);
 	~QuestionsHandler();
     static QuestionsHandler getInstance();
-    bool checkAnswer(std::string chosenAnswer);
+    bool checkAnswer(int index);
     void resetQuestions();
     Question getQuestion();
     std::pair<std::string, std::vector<std::string>> getNextQuestion();
