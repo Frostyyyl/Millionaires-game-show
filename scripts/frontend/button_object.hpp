@@ -50,7 +50,7 @@ class TextButton : public ButtonBase{
 private:
     AnswerSprite spritesheet;
 public:
-    TextButton(const char* filename, int x, int y, const char* text, const char* character, int numOfColumns = 2, int numOfRows = 1)
+    TextButton(const char* filename, int x, int y, std::string text, std::string character, int numOfColumns = 2, int numOfRows = 1)
     : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows){}
 
     bool isClicked(int x, int y){
@@ -80,7 +80,7 @@ public:
         }
         spritesheet.update();
     }
-    void loadAnswer(const char* answerText){
+    void loadAnswer(std::string answerText){
         spritesheet.loadAnswer(answerText);
     }
     void destroy(){

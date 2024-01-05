@@ -70,23 +70,23 @@ private:
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -4;
 public:
-    QuestionSprite(const char* filename, int x, int y, const char* questionText, int numOfColumns = 1, int numOfRows = 1) 
+    QuestionSprite(const char* filename, int x, int y, std::string questionText, int numOfColumns = 1, int numOfRows = 1) 
             : Spritesheet(filename, x, y, numOfColumns, numOfRows){
         
         question.dest.x += MOVE_HORIZONTALLY;
         
         loadQuestion(questionText);
     }
-    void loadQuestion(const char* answerText){
+    void loadQuestion(std::string answerText){
         question.text = answerText;
 
-        font = textManager.getFont46();
+        font = textManager.getHugeFont();
         TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
         if (question.dest.w > dest.w - MOVE_HORIZONTALLY * 2){
-            font = textManager.getFont30();
+            font = textManager.getLargeFont();
             TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
             if (question.dest.w > (dest.w - MOVE_HORIZONTALLY * 2) * 2 - 50){
-                font = textManager.getFont21();
+                font = textManager.getMediumFont();
                 TTF_SizeText(font, question.text.c_str(), &question.dest.w, &question.dest.h);
             }
             if (question.dest.w > dest.w - MOVE_HORIZONTALLY * 2){
@@ -115,29 +115,32 @@ private:
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -3;
 public:
-    AnswerSprite(const char* filename, int x, int y, const char* answerText, const char* symbol, int numOfColumns = 1, int numOfRows = 1) 
+    AnswerSprite(const char* filename, int x, int y, std::string answerText, std::string symbol, int numOfColumns = 1, int numOfRows = 1) 
             : Spritesheet(filename, x, y, numOfColumns, numOfRows){
     
-        character.text = symbol + (std::string)":";
+        character.text = symbol + ":";
 
-        TTF_SizeText(textManager.getFont21(), character.text.c_str(), &character.dest.w, &character.dest.h);
+        TTF_SizeText(textManager.getMediumFont(), character.text.c_str(), &character.dest.w, &character.dest.h);
         character.dest.x += MOVE_HORIZONTALLY;
         character.dest.y += (dest.h / 2) - (character.dest.h / 2) + MOVE_VERTICALLY;
         answer.dest.x += MOVE_HORIZONTALLY * 2 + character.dest.w;
 
         loadAnswer(answerText);
     }
-    void loadAnswer(const char* answerText){
+    void loadAnswer(std::string answerText){
         answer.text = answerText;
 
-        font = textManager.getFont21();
+        font = textManager.getMediumFont();
         TTF_SizeText(font, answer.text.c_str(), &answer.dest.w, &answer.dest.h);
         if (answer.dest.w > dest.w - MOVE_HORIZONTALLY * 3 - character.dest.w){
-            font = textManager.getFont16();
+            font = textManager.getSmallFont();
             TTF_SizeText(font, answer.text.c_str(), &answer.dest.w, &answer.dest.h);
         }
         // center the text (depending on the font might have to change the value of MOVE_VERTICALLY)
         answer.dest.y = (dest.h / 2) - (answer.dest.h / 2) + MOVE_VERTICALLY;
+        if (font == textManager.getSmallFont()){
+            answer.dest.y += ALIGN;
+        }
     
         textTexture = textManager.loadText(font, answer, character, dest);
     }
