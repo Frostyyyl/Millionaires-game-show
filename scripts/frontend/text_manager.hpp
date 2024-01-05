@@ -2,29 +2,85 @@
 #include "SDL.h"
 #include "SDL_TTF.h"
 
+struct Text{
+    std::string text;
+    SDL_Rect dest = {0, 0, 0, 0};
+
+    Text(){}
+};
+
 class TextManager{
 private:
     const std::string fontFilename = "fonts/muli.ttf";
     TTF_Font* font46;
-    TTF_Font* font32;
+    TTF_Font* font30;
     TTF_Font* font21;
     TTF_Font* font16;
 public:
-    static TTF_Font* LoadFont(const char* fontFilename, int fontSize){
+    TTF_Font* loadFont(const char* fontFilename, int fontSize){
         TTF_Font* font = TTF_OpenFont(fontFilename, fontSize);
         if (!font) {
             std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
         }
         return font;
     }
+    SDL_Texture* loadText(TTF_Font* font, Text &text, Text &symbol, SDL_Rect &dest){
+        SDL_Surface* tempSurface = SDL_CreateRGBSurface(0, dest.w, dest.h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+        SDL_Surface* charSurface = TTF_RenderText_Blended_Wrapped(font21, symbol.text.c_str(), {255, 15, 76}, symbol.dest.w);
+        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, text.text.c_str(), {12, 12, 12}, text.dest.w);
+        if (!tempSurface){
+            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        } if (!textSurface) {
+            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        } if (!charSurface) {
+            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        }
+        if (SDL_BlitSurface(charSurface, NULL, tempSurface, &symbol.dest) == -1){
+            std::cerr << "Failed to merge surfaces"; 
+        } if (SDL_BlitSurface(textSurface, NULL, tempSurface, &text.dest) == -1){
+            std::cerr << "Failed to merge surfaces" << std::endl;
+        }
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        if (!tex) {
+            std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
+        }
+        SDL_FreeSurface(tempSurface);
+        SDL_FreeSurface(charSurface);
+        SDL_FreeSurface(textSurface);
+
+        return tex;
+    }
+    SDL_Texture* loadText(TTF_Font* font, Text &text, SDL_Rect &dest){
+        SDL_Surface* tempSurface = SDL_CreateRGBSurface(0, dest.w, dest.h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, text.text.c_str(), {12, 12, 12}, text.dest.w);
+        if (!tempSurface) {
+            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        } if (!textSurface) {
+            std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
+        }
+        if (SDL_BlitSurface(textSurface, NULL, tempSurface, &text.dest) == -1){
+            std::cerr << "Failed to merge surfaces"; 
+        }
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        if (!tex) {
+            std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
+        }
+        SDL_FreeSurface(tempSurface);
+        SDL_FreeSurface(textSurface);
+
+        return tex;
+    }
+    void draw(SDL_Texture* tex, SDL_Rect &dest){
+        SDL_RenderCopy(Game::renderer, tex, NULL, &dest); 
+    }
     void init(){
-        font46 = LoadFont(fontFilename.c_str(), 46);
-        font32 = LoadFont(fontFilename.c_str(), 32);
-        font21 = LoadFont(fontFilename.c_str(), 21);
-        font16 = LoadFont(fontFilename.c_str(), 16);
+        font46 = loadFont(fontFilename.c_str(), 46);
+        font30 = loadFont(fontFilename.c_str(), 32);
+        font21 = loadFont(fontFilename.c_str(), 21);
+        font16 = loadFont(fontFilename.c_str(), 16);
     }
     TTF_Font* getFont46(){ return font46; }
-    TTF_Font* getFont32(){ return font32; }
+    TTF_Font* getFont30(){ return font30; }
     TTF_Font* getFont21(){ return font21; }
     TTF_Font* getFont16(){ return font16; }
 
