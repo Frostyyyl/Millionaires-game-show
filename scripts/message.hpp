@@ -20,7 +20,6 @@ enum MessageType{
 class BaseMessage { // base messages to have messages of different types
 public:
     virtual ~BaseMessage() = default;
-    virtual void print() const = 0;
     virtual MessageType getMessageType() const = 0; //so that i can print every message type without dynamic cast
 };
 
@@ -31,22 +30,5 @@ public:
     std::tuple<Args...> arguments;
 
     Message(MessageType t, Args... args) : type(t), arguments(std::move(args)...) {}
-
-    void print() const override {
-        std::cout << "Message Type: " << type << std::endl;
-        std::cout << "Arguments: ";
-        printTuple(arguments);
-    }
-
     MessageType getMessageType() const override { return type; }
-
-private:
-    // printing
-    template <typename... TupleArgs>
-    void printTuple(const std::tuple<TupleArgs...>& t) const {
-        std::apply([](const auto&... args) {
-            ((std::cout << args << " "), ...);
-            std::cout << std::endl;
-        }, t);
-    }
 };

@@ -14,10 +14,6 @@ int main( int argc, char* argv[] ){
     int frameTime;
     QuestionsHandler question("data/database.json");
 
-    std::pair<std::string, std::vector<std::string>> lol = question.getNextQuestion(0);
-
-    std::cout << lol.first << std::endl;
-
     Game::getInstance().init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
     
     while(Game::getInstance().running()) {

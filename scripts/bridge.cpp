@@ -16,7 +16,7 @@ void Bridge::update() {
     while (!messages.empty()) {
         auto msg = std::move(messages.front());
 
-        msg->print(); // here is printing just in case
+        //msg->print(); // here is printing just in case
 
         if(msg->getMessageType() > 5){
             std::cout << "got message to backend" << std::endl;

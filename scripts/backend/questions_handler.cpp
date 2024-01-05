@@ -99,13 +99,14 @@ int QuestionsHandler::getTier(){
 
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
-    if(msg->getMessageType() == BACK_START_GAME){ // i will change it to switch statement
+    MessageType type = msg->getMessageType();
+    if(type == BACK_START_GAME){ // i will change it to switch statement
         // for now next question cause we dont have startr menu
-        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, getNextQuestion(0)); 
+        std::cout << "lol" << std::endl;
+        std::pair<std::string, std::vector<std::string>> res = getNextQuestion(0);
+        std::cout << res.first << std::endl;
+        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res); 
     }
-    // if(msg->getMessageType() == BACK_UPDATE){
-    //     std::cout << "Essa bitch" << std::endl;
-    // }
 }
 
 //May or may not work (It's weird)
