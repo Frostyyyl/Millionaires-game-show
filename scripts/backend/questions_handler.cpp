@@ -64,14 +64,25 @@ bool QuestionsHandler::checkAnswer(std::string chosenAnswer){
 
 void QuestionsHandler::resetQuestions(){
     availableQuestions = questions;
+    questionCounter = 0;
 }
 
 Question QuestionsHandler::getQuestion(){
     return currentQuestion;
 }
 
-std::pair<std::string, std::vector<std::string>> QuestionsHandler::getNextQuestion(int tier){
-    this->tier = tier;
+std::pair<std::string, std::vector<std::string>> QuestionsHandler::getNextQuestion(){
+    questionCounter++;
+    if (questionCounter >= 1 && questionCounter <= 4){
+        tier = 0;
+    } else if (questionCounter <= 8){
+        tier = 1;
+    } else if (questionCounter <= 10){
+        tier = 2;
+    } else {
+        std::cout << "ERROR: Game has been already won" << std::endl;
+        exit(1);
+    }
     this->drawQuestion();
     std::string questionText = currentQuestion.question;
     std::vector<std::string> answers;
@@ -97,19 +108,22 @@ int QuestionsHandler::getTier(){
     return tier;
 }
 
+int QuestionsHandler::getQuestionCounter(){
+    return questionCounter;
+}
+
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
     if(type == BACK_START_GAME){ // i will change it to switch statement
         // for now next question cause we dont have startr menu
         std::cout << "lol" << std::endl;
-        std::pair<std::string, std::vector<std::string>> res = getNextQuestion(0);
+        std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
         std::cout << res.first << std::endl;
         Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res); 
     }
 }
 
-//May or may not work (It's weird)
 Lifeline::Lifeline() : questionsHandler(QuestionsHandler::getInstance()){}
 
 Lifeline::~Lifeline() {}

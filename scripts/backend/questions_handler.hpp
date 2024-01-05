@@ -32,6 +32,7 @@ private:
     std::vector<std::vector<Question>> questions;
     std::vector<std::vector<Question>> availableQuestions;
     Question currentQuestion;
+    int questionCounter;
     int tier;
     std::vector<std::string> availableAnswers;
     void drawQuestion();
@@ -39,15 +40,14 @@ public:
     QuestionsHandler(const std::string filename);
 	~QuestionsHandler();
     static QuestionsHandler getInstance();
-
     bool checkAnswer(std::string chosenAnswer);
     void resetQuestions();
     Question getQuestion();
-    std::pair<std::string, std::vector<std::string>> getNextQuestion(int tier);
+    std::pair<std::string, std::vector<std::string>> getNextQuestion();
     void setAvailableAnswers(std::vector<std::string> answers);
     std::vector<std::string> getAvailableAnswers();
     int getTier();
-
+    int getQuestionCounter();
     void processMessage(std::unique_ptr<BaseMessage> msg);
 };
 
