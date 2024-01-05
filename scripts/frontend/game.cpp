@@ -123,11 +123,14 @@ bool Game::running(){
 }
 
 void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
-        if(msg->getMessageType() == FRONT_UPDATE){
-            std::cout << "Essa bitch" << std::endl;
-        }
-        if(auto message = dynamic_cast<Message<const char*>*>(msg.get())){
-            std::cout << "to ma tekst: " << std::get<const char*>(message->arguments) << std::endl;
-        }
+    std::cout << "here is frontend got message" << std::endl;
+    MessageType type = msg->getMessageType();
+    switch (type)
+    {
+    case FRONT_NEXT_QUESTION:
         
+        break;
+    default:
+        break;
+    }
 }

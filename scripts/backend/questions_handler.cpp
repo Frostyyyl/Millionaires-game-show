@@ -1,4 +1,5 @@
 #include <questions_handler.hpp>
+#include "bridge.hpp"
 
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::mt19937 g(seed);
@@ -97,9 +98,14 @@ int QuestionsHandler::getTier(){
 }
 
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
-    if(msg->getMessageType() == BACK_UPDATE){
-        std::cout << "Essa bitch" << std::endl;
+    std::cout << "here is backend got message" << std::endl;
+    if(msg->getMessageType() == BACK_START_GAME){ // i will change it to switch statement
+        // for now next question cause we dont have startr menu
+        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, getNextQuestion(0)); 
     }
+    // if(msg->getMessageType() == BACK_UPDATE){
+    //     std::cout << "Essa bitch" << std::endl;
+    // }
 }
 
 //May or may not work (It's weird)

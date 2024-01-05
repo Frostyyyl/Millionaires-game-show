@@ -70,14 +70,14 @@ private:
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -4;
 public:
-    QuestionSprite(const char* filename, int x, int y, const char* questionText, int numOfColumns = 1, int numOfRows = 1) 
+    QuestionSprite(const char* filename, int x, int y, std::string questionText, int numOfColumns = 1, int numOfRows = 1) 
             : Spritesheet(filename, x, y, numOfColumns, numOfRows){
         
         question.dest.x += MOVE_HORIZONTALLY;
         
         loadQuestion(questionText);
     }
-    void loadQuestion(const char* answerText){
+    void loadQuestion(std::string answerText){
         question.text = answerText;
 
         font = textManager.getHugeFont();
@@ -115,10 +115,10 @@ private:
     static const int MOVE_HORIZONTALLY = 5;
     static const int MOVE_VERTICALLY = -3;
 public:
-    AnswerSprite(const char* filename, int x, int y, const char* answerText, const char* symbol, int numOfColumns = 1, int numOfRows = 1) 
+    AnswerSprite(const char* filename, int x, int y, std::string answerText, std::string symbol, int numOfColumns = 1, int numOfRows = 1) 
             : Spritesheet(filename, x, y, numOfColumns, numOfRows){
     
-        character.text = symbol + (std::string)":";
+        character.text = symbol + ":";
 
         TTF_SizeText(textManager.getMediumFont(), character.text.c_str(), &character.dest.w, &character.dest.h);
         character.dest.x += MOVE_HORIZONTALLY;
@@ -127,7 +127,7 @@ public:
 
         loadAnswer(answerText);
     }
-    void loadAnswer(const char* answerText){
+    void loadAnswer(std::string answerText){
         answer.text = answerText;
 
         font = textManager.getMediumFont();

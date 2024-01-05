@@ -28,6 +28,7 @@ public:
     }
     void onClick(){
         std::cout << "Button was clicked " << std::endl; 
+        Bridge::getInstance().addMessage(BACK_START_GAME);
     }
     void draw() override{
         spritesheet.draw();
@@ -50,7 +51,7 @@ class TextButton : public ButtonBase{
 private:
     AnswerSprite spritesheet;
 public:
-    TextButton(const char* filename, int x, int y, const char* text, const char* character, int numOfColumns = 2, int numOfRows = 1)
+    TextButton(const char* filename, int x, int y, std::string text, std::string character, int numOfColumns = 2, int numOfRows = 1)
     : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows){}
 
     bool isClicked(int x, int y){
@@ -63,7 +64,7 @@ public:
         if (!ANSWER_SELECTED){
             ANSWER_SELECTED = true;
             spritesheet.updateSprite(1, 0);
-            Bridge::getInstance().addMessage(FRONT_UPDATE, "Lukasz ssie pale essa");
+            Bridge::getInstance().addMessage(BACK_ANSWER, 1);
         }
     }
     void draw() override{
@@ -80,7 +81,7 @@ public:
         }
         spritesheet.update();
     }
-    void loadAnswer(const char* answerText){
+    void loadAnswer(std::string answerText){
         spritesheet.loadAnswer(answerText);
     }
     void destroy(){
