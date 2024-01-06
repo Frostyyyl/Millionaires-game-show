@@ -14,7 +14,7 @@ ObjectManager objectManager;
 InputManager inputManager;
 
 std::vector<TextButton*> answers; // here because i need to access it
-QuestionSprite* question = nullptr;
+TextSprite* question = nullptr;
 
 Game::Game(){}
 Game::~Game(){}
@@ -56,16 +56,34 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     // here is creating and adding objects to ObjectManager and InputManager
     // will probably need to change this later so it's more clear
     
-    Mouse* mouse = new Mouse();     // 🐁 sorry I ate the cheeeeese
+    Mouse* mouse = new Mouse(); // 🪦 // nooooo cat ate the mouse
     objectManager.addObject(mouse);
 
-    Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
-    question = new QuestionSprite("images/question_sprite.png", 60, 395, "What is the capital of France?");
+    // ░░░░░░░░░░░░░░░░░░░░░▄▀░░▌
+    // ░░░░░░░░░░░░░░░░░░░▄▀▐░░░▌
+    // ░░░░░░░░░░░░░░░░▄▀▀▒▐▒░░░▌
+    // ░░░░░▄▀▀▄░░░▄▄▀▀▒▒▒▒▌▒▒░░▌
+    // ░░░░▐▒░░░▀▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒█
+    // ░░░░▌▒░░░░▒▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄
+    // ░░░░▐▒░░░░░▒▒▒▒▒▒▒▒▒▌▒▐▒▒▒▒▒▀▄
+    // ░░░░▌▀▄░░▒▒▒▒▒▒▒▒▐▒▒▒▌▒▌▒▄▄▒▒▐ 
+    // ░░░▌▌▒▒▀▒▒▒▒▒▒▒▒▒▒▐▒▒▒▒▒█▄█▌▒▒▌
+    // ░▄▀▒▐▒▒▒▒▒▒▒▒▒▒▒▄▀█▌▒▒▒▒▒▀▀▒▒▐░░░▄
+    // ▀▒▒▒▒▌▒▒▒▒▒▒▒▄▒▐███▌▄▒▒▒▒▒▒▒▄▀▀▀▀
+    // ▒▒▒▒▒▐▒▒▒▒▒▄▀▒▒▒▀▀▀▒▒▒▒▄█▀░░▒▌▀▀▄▄
+    // ▒▒▒▒▒▒█▒▄▄▀▒▒▒▒▒▒▒▒▒▒▒░░▐▒▀▄▀▄░░░░▀
+    // ▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▄▒▒▒▒▄▀▒▒▒▌░░▀▄
+    // ▒▒▒▒▒▒▒▒▀▄▒▒▒▒▒▒▒▒▀▀▀▀▒▒▒▄▀         
 
-    TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "Hungary", "A", 0);
-    TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "Francja nie istnieje - poprawna odpowiedz", "B", 1);
-    TextButton* C = new TextButton("images/text_button_sprite.png", 60, 605, "Pekin", "C", 2);
-    TextButton* D = new TextButton("images/text_button_sprite.png", 515, 605, "Madrid", "D", 3);
+    Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
+    question = new TextSprite("images/question_sprite.png", 60, 395, " ");
+    DoubleTextsprite* currentQuestion = new DoubleTextsprite("images/addons_sprite.png", 80, 365, "Question:", "0", "right");
+    DoubleTextsprite* score = new DoubleTextsprite("images/addons_sprite.png", 695, 365, "Score:", "0", "right");
+
+    TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "A:", " ", 0);
+    TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "B:",  " ", 1);
+    TextButton* C = new TextButton("images/text_button_sprite.png", 60, 605, "C:", " ", 2);
+    TextButton* D = new TextButton("images/text_button_sprite.png", 515, 605, "D:", " ", 3);
     answers.emplace_back(A);
     answers.emplace_back(B);
     answers.emplace_back(C);
@@ -78,6 +96,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
 
     objectManager.addObject(question);
     objectManager.addObject(button);
+    objectManager.addObject(currentQuestion);
+    objectManager.addObject(score);
     inputManager.addButton(button);
 }
 
@@ -133,9 +153,9 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
         if (auto questionMsg = dynamic_cast<Message<std::pair<std::string, std::vector<std::string>>>*>(msg.get())) {
             auto arguments = std::get<0>(questionMsg->arguments);
             for(int i = 0; i < 4; i++) {
-                answers[i]->loadAnswer(arguments.second[i]);
+                answers[i]->loadData(arguments.second[i]);
             }
-            question->loadQuestion(arguments.first);
+            question->loadData(arguments.first);
         }
         else{
             std::cerr << "Error while reading Question from Message" << std::endl;

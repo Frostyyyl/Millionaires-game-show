@@ -49,12 +49,12 @@ public:
 
 class TextButton : public ButtonBase{
 private:
-    AnswerSprite spritesheet;
-    int Id;
+    DoubleTextsprite spritesheet;
+    int id;
 public:
-    TextButton(const char* filename, int x, int y, std::string text, std::string character, int id, int numOfColumns = 2, int numOfRows = 1)
-    : ButtonBase(x, y), spritesheet(filename, x, y, text, character, numOfColumns, numOfRows), Id(id){}
-
+    TextButton(const char* filename, int x, int y, std::string prefixData, std::string data, int id, std::string flush = "left", 
+                int numOfColumns = 2, int numOfRows = 1): ButtonBase(x, y),
+                spritesheet(filename, x, y, prefixData, data, flush, numOfColumns, numOfRows), id(id){}
     bool isClicked(int x, int y){
         if(pos.x < x && spritesheet.getWidth() + pos.x > x && pos.y < y && spritesheet.getHeight() + pos.y > y){
             return true;
@@ -65,7 +65,7 @@ public:
         if (!ANSWER_SELECTED){
             ANSWER_SELECTED = true;
             spritesheet.updateSprite(1, 0);
-            Bridge::getInstance().addMessage(BACK_ANSWER, Id);
+            Bridge::getInstance().addMessage(BACK_ANSWER, id);
         }
     }
     void draw() override{
@@ -82,8 +82,8 @@ public:
         }
         spritesheet.update();
     }
-    void loadAnswer(std::string answerText){
-        spritesheet.loadAnswer(answerText);
+    void loadData(std::string data){
+        spritesheet.loadData(data);
     }
     void destroy(){
         spritesheet.destroy();

@@ -50,9 +50,9 @@
     ],
     "hard": [
         {
-            "question": "Are you the strongest because you are Goje Satoru or are you Gojo Satoru because you are the strongest",
-            "correct_answer": "Suguru...",
-            "incorrect_answers": ["Satoru...", "Salmon", "Hollow purple"]
+            "question": "Are you the strongest because you're Gojo Satoru? Or does being the strongest make you Gojo Satoru?",
+            "correct_answer": "What are you trying to say?",
+            "incorrect_answers": ["Satoru...", "Salmon", "Suguru..."]
         },
         {
             "question": "What LED diode color is the best?",
@@ -61,7 +61,7 @@
         },
         {
             "question": "Who is the sigma?",
-            "correct_answer": "Szymon Holownia",
+            "correct_answer": "Ryan Gosling",
             "incorrect_answers": ["Krzysztof Bosak", "Grzegorz Braun", "Robert Biedron"]
         }
     ]

@@ -12,8 +12,8 @@ std::vector<std::string> Half::interact(){
     answers.push_back(question.incorrectAnswers[rng(g)]);
     std::shuffle(answers.begin(), answers.end(), g);
     questionsHandler.setAvailableAnswers(answers);
-    answers.push_back("");  //PUSTY
-    answers.push_back("");  //PUSTY
+    answers.push_back(" ");  //PUSTY
+    answers.push_back(" ");  //PUSTY
     return answers;
 }
 
