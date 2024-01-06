@@ -48,7 +48,6 @@ public:
         src.w = dest.w = spriteWidth;
         src.h = dest.h = spriteHeight;
     }
-
     // NOTE: when we will decide on the final form of the spritesheets this will probably have to be changed
     void updateSprite(int row = 0, int col = 0){
         src.x = (width / numOfColumns) * row;
@@ -147,7 +146,6 @@ public:
     
         textTexture = textManager.loadText(font, contents, prefix, dest);
     }
-
     void draw() override{
         TextureManager::Draw(tex, src, dest);
         textManager.draw(textTexture, dest);

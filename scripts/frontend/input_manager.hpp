@@ -4,7 +4,7 @@
 #include <vector>
 #include "SDL.h"
 #include "game.hpp"
-#include "button_object.hpp"
+#include "button_system.hpp"
 
 class InputManager{
 private:

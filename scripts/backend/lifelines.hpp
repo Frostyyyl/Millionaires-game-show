@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <chrono>
+#include <iostream>
 #include "questions_handler.hpp"
 
 class Lifeline{

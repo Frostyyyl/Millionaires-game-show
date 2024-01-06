@@ -1,6 +1,8 @@
 #pragma once
+#include <iostream>
 #include "SDL.h"
 #include "SDL_TTF.h"
+#include "game.hpp"
 
 struct Text{
     std::string text;

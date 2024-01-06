@@ -5,7 +5,7 @@
 #include "text_manager.hpp"
 #include "sprite_system.hpp"
 #include "input_manager.hpp"
-#include "button_object.hpp"
+#include "button_system.hpp"
 
 SDL_Rect Mouse::pointer;
 SDL_Renderer* Game::renderer = nullptr;
