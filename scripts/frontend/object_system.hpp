@@ -36,6 +36,9 @@ public:
     void addObject(Object* obj){
         objects.emplace_back(obj);
     }
+    void clear(){
+        objects.clear();
+    }
 };
 
 class Mouse : public Object{

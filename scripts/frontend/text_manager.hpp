@@ -1,24 +1,21 @@
 #pragma once
-#include <iostream>
-#include "SDL.h"
 #include "SDL_TTF.h"
-#include "game.hpp"
-
-struct Text{
-    std::string text;
-    SDL_Rect dest = {0, 0, 0, 0};
-
-    Text(){}
-};
+#include "scene_manager.hpp"
+#include "text.hpp"
 
 class TextManager{
 private:
+    TextManager(){};
     const char* fontFilename = "fonts/muli.ttf";
     TTF_Font* hugeFont;
     TTF_Font* largeFont;
     TTF_Font* mediumFont;
     TTF_Font* smallFont;
 public:
+    static TextManager& getInstance(){
+        static TextManager INSTANCE;
+        return INSTANCE;
+    }
     TTF_Font* loadFont(const char* fontFilename, int fontSize){
         TTF_Font* font = TTF_OpenFont(fontFilename, fontSize);
         if (!font) {
@@ -42,7 +39,7 @@ public:
         } if (SDL_BlitSurface(textSurface, NULL, tempSurface, &contents.dest) == -1){
             std::cerr << "Failed to merge surfaces" << std::endl;
         }
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(SceneManager::renderer, tempSurface);
         if (!tex) {
             std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
         }
@@ -63,7 +60,7 @@ public:
         if (SDL_BlitSurface(textSurface, NULL, tempSurface, &contents.dest) == -1){
             std::cerr << "Failed to merge surfaces"; 
         }
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(SceneManager::renderer, tempSurface);
         if (!tex) {
             std::cerr << "Failed to create text texture: " << SDL_GetError() << std::endl;
         }
@@ -73,7 +70,7 @@ public:
         return tex;
     }
     void draw(SDL_Texture* tex, SDL_Rect &dest){
-        SDL_RenderCopy(Game::renderer, tex, NULL, &dest); 
+        SDL_RenderCopy(SceneManager::renderer, tex, NULL, &dest); 
     }
     void init(){
         hugeFont = loadFont(fontFilename, 46);
@@ -87,5 +84,3 @@ public:
     TTF_Font* getSmallFont(){ return smallFont; }
 
 };
-
-TextManager textManager;

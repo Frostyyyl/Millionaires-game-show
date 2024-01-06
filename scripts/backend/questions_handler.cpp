@@ -145,7 +145,7 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     MessageType type = msg->getMessageType();
     if(type == BACK_START_GAME){ // have to be ifs cause of declarations of variables
         std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res, questionCounter, getScore()); // for now next question cause we dont have start menu (also had to add counter and score)
+        Bridge::getInstance().addMessage(FRONT_START_GAME, res, questionCounter, getScore()); // for now next question cause we dont have start menu (also had to add counter and score)
     }
     else if(type == BACK_ANSWER){
         if (auto answerMsg = dynamic_cast<Message<int>*>(msg.get())) {
@@ -153,6 +153,7 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
             if(checkAnswer(ans)){
                 if(questionCounter == 10){ // if game completed
                     std::cout << "game won" << std::endl;
+                    Bridge::getInstance().addMessage(FRONT_GAME_WON);
                 }
                 else{
                     std::pair<std::string, std::vector<std::string>> res = getNextQuestion();

@@ -1,14 +1,12 @@
 #pragma once
-#include <iostream>
-#include "SDL.h"
 #include "SDL_image.h"
-#include "game.hpp"
+#include "scene_manager.hpp"
 
 class TextureManager{
 public:
     static SDL_Texture* LoadTexture(const char* filename){
         SDL_Surface* tempSurface = IMG_Load(filename);
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(SceneManager::renderer, tempSurface);
         if(tex == nullptr){
             std::cerr << "Couldn't load texture" << std::endl;
             exit(1);
@@ -18,6 +16,6 @@ public:
         return tex;
     }
     static void Draw(SDL_Texture* tex, SDL_Rect &src, SDL_Rect &dest){
-        SDL_RenderCopy(Game::renderer, tex, &src, &dest);
+        SDL_RenderCopy(SceneManager::renderer, tex, &src, &dest);
     }
 };

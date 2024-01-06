@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include "object_system.hpp"
 #include "sprite_system.hpp"
 #include "bridge.hpp"
 

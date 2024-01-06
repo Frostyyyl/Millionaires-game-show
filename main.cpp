@@ -1,7 +1,7 @@
 #include <iostream>
 #include "SDL.h"
-#include "game.hpp"
-#include "lifelines.hpp"
+#include "scene_manager.hpp"
+#include "questions_handler.hpp"
 
 const int WIDTH = 1000, HEIGHT = 700;
 const int FRAMES_PER_SECOND = 60;
@@ -12,16 +12,15 @@ int main( int argc, char* argv[] ){
 
     Uint32 frameStart;
     int frameTime;
+
+    // im not sure but i think it needs to stay here cause i got an error with questioncounter while in scenemanager.init()
     QuestionsHandler question("data/database.json");
 
-    Game::getInstance().init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
+    SceneManager::getInstance().init("Milionaires", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT);
     
-    while(Game::getInstance().running()) {
+    while(SceneManager::getInstance().running()) {
         frameStart = SDL_GetTicks();
-        
-        Game::getInstance().handleEvent();
-        Game::getInstance().update();
-        Game::getInstance().render();
+        SceneManager::getInstance().run();
 
         frameTime = SDL_GetTicks() - frameStart;
 
@@ -29,6 +28,5 @@ int main( int argc, char* argv[] ){
             SDL_Delay(FRAME_DELAY - frameTime);
         }
     }
-    Game::getInstance().clean();
     return 0;
 }

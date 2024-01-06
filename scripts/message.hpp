@@ -10,6 +10,7 @@ enum MessageType{
     FRONT_PHONE, // show phone answer
     FRONT_AUDIENCE, // show audience answer
     FRONT_GAME_OVER, // show game over screen
+    FRONT_GAME_WON,
     // BACK... - messages to backend (from frontend)
     BACK_START_GAME, // get first question (maybe also load all questions here?)
     BACK_ANSWER, // process answer given

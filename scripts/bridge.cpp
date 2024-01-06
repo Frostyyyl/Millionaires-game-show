@@ -1,5 +1,5 @@
 #include "bridge.hpp"
-#include "game.hpp"
+#include "scene_manager.hpp"
 #include "questions_handler.hpp"
 
 Bridge::Bridge(){}
@@ -15,11 +15,11 @@ Bridge &Bridge::getInstance()
 void Bridge::update() {
     while (!messages.empty()) {
         auto msg = std::move(messages.front());
-        if(msg->getMessageType() > 5){
+        if(msg->getMessageType() > 6){
             QuestionsHandler::getInstance().processMessage(std::move(msg));
         }
         else{
-            Game::getInstance().processMessage(std::move(msg));
+            SceneManager::getInstance().processMessage(std::move(msg));
         }
         messages.pop();
     }
