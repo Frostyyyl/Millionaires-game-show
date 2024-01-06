@@ -112,12 +112,40 @@ int QuestionsHandler::getQuestionCounter(){
     return questionCounter;
 }
 
+std::string QuestionsHandler::getScore(){ // goofy but enough
+    switch (questionCounter){
+    case 1:
+        return "0";
+    case 2:
+        return "1000";
+    case 3:
+        return "5000";
+    case 4:
+        return "10 000";
+    case 5:
+        return "20 000";
+    case 6:
+        return "50 000";
+    case 7:
+        return "75 000";
+    case 8:
+        return "100 000";
+    case 9:
+        return "250 000";
+    case 10:
+        return "500 000";
+    default:
+        break;
+    }
+    return "";
+}
+
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
     if(type == BACK_START_GAME){ // have to be ifs cause of declarations of variables
         std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res); // for now next question cause we dont have start menu
+        Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res, questionCounter, getScore()); // for now next question cause we dont have start menu (also had to add counter and score)
     }
     else if(type == BACK_ANSWER){
         if (auto answerMsg = dynamic_cast<Message<int>*>(msg.get())) {
@@ -128,7 +156,7 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
                 }
                 else{
                     std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-                    Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res);
+                    Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res, questionCounter, getScore()); // need to add here , questioncounter
                 }
             }
             else{

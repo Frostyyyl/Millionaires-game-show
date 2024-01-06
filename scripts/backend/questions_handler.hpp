@@ -51,5 +51,6 @@ public:
     std::vector<std::string> getAvailableAnswers();
     int getTier();
     int getQuestionCounter();
+    std::string getScore();
     void processMessage(std::unique_ptr<BaseMessage> msg);
 };
