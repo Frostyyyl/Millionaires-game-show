@@ -15,6 +15,8 @@ InputManager inputManager;
 
 std::vector<TextButton*> answers; // here because i need to access it
 TextSprite* question = nullptr;
+DoubleTextsprite* currentQuestion = nullptr;
+DoubleTextsprite* score = nullptr;
 
 Game::Game(){}
 Game::~Game(){}
@@ -75,10 +77,12 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height){
     // ▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▄▒▒▒▒▄▀▒▒▒▌░░▀▄
     // ▒▒▒▒▒▒▒▒▀▄▒▒▒▒▒▒▒▒▀▀▀▀▒▒▒▄▀         
 
+    // glory to the kitty
+
     Button* button = new Button("images/button_spritesheet.png", 700, 40, 2, 1);
     question = new TextSprite("images/question_sprite.png", 60, 395, " ");
-    DoubleTextsprite* currentQuestion = new DoubleTextsprite("images/addons_sprite.png", 80, 365, "Question:", "0", "right");
-    DoubleTextsprite* score = new DoubleTextsprite("images/addons_sprite.png", 695, 365, "Score:", "0", "right");
+    currentQuestion = new DoubleTextsprite("images/addons_sprite.png", 80, 365, "Question:", "0", "right");
+    score = new DoubleTextsprite("images/addons_sprite.png", 695, 365, "Score:", "0", "right");
 
     TextButton* A = new TextButton("images/text_button_sprite.png", 60, 525, "A:", " ", 0);
     TextButton* B = new TextButton("images/text_button_sprite.png", 515, 525, "B:",  " ", 1);
@@ -150,12 +154,17 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
     switch (type)
     {
     case FRONT_NEXT_QUESTION:
-        if (auto questionMsg = dynamic_cast<Message<std::pair<std::string, std::vector<std::string>>>*>(msg.get())) {
+    std::cout << "lol"  << std::endl;
+        if (auto questionMsg = dynamic_cast<Message<std::pair<std::string, std::vector<std::string>>, int, std::string>*>(msg.get())) {
             auto arguments = std::get<0>(questionMsg->arguments);
             for(int i = 0; i < 4; i++) {
                 answers[i]->loadData(arguments.second[i]);
             }
             question->loadData(arguments.first);
+            int counter = std::get<1>(questionMsg->arguments);
+            std::string s = std::get<2>(questionMsg->arguments);
+            currentQuestion->loadData(std::to_string(counter));
+            score->loadData(s);
         }
         else{
             std::cerr << "Error while reading Question from Message" << std::endl;
