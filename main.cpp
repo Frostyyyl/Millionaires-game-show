@@ -1,7 +1,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "game.hpp"
-#include "questions_handler.hpp"
+#include "lifelines.hpp"
 
 const int WIDTH = 1000, HEIGHT = 700;
 const int FRAMES_PER_SECOND = 60;
