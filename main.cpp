@@ -28,5 +28,6 @@ int main( int argc, char* argv[] ){
             SDL_Delay(FRAME_DELAY - frameTime);
         }
     }
+    SceneManager::getInstance().clear();
     return 0;
 }

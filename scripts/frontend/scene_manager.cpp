@@ -113,9 +113,13 @@ void SceneManager::changeScene(GameScene scene){
 
 void SceneManager::quit(){
     isRunning = false;
-    // for(auto& scene : scenes){
-    //     scene->clean();
-    // }
+}
+
+void SceneManager::clear(){
+    
+    for(auto& scene : scenes){
+        scene->clean();
+    }
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();

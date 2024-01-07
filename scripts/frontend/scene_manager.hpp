@@ -21,6 +21,7 @@ public:
     void run();
     void changeScene(GameScene scene);
     void quit();
+    void clear();
     bool running();
 
     void processMessage(std::unique_ptr<BaseMessage> msg);
