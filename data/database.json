@@ -1,68 +1,718 @@
-{   
+{
     "easy": [
         {
-            "question": "Why?",
-            "correct_answer": "Yes",
-            "incorrect_answers": ["No", "Two", "One"]
+            "question": "How many sides does a square have?",
+            "correct_answer": "4",
+            "incorrect_answers": ["3", "5", "6"]
         },
         {
-            "question": "Who is the smelliest?",
-            "correct_answer": "Lukasz",
-            "incorrect_answers": ["Kasia", "Mikolaj", "Freddy Fazbear"]
+            "question": "Who is the author of 'Crime and Punishment'?",
+            "correct_answer": "Fyodor Dostoevsky",
+            "incorrect_answers": ["Leo Tolstoy", "Anton Chekhov", "Ivan Turgenev"]
         },
         {
-            "question": "Who is against The World?",
-            "correct_answer": "Scott Pilgrim",
-            "incorrect_answers": ["Ramona Flowers", "Knives Chau", "Matthew Patel"]
+            "question": "Who is known as the 'Queen of Pop'?",
+            "correct_answer": "Madonna",
+            "incorrect_answers": ["Beyonce", "Rihanna", "Taylor Swift"]
         },
         {
-            "question": "Which day did shibuya incident took place?",
-            "correct_answer": "31.10",
-            "incorrect_answers": ["24.12", "11.11", "6.9"]
+            "question": "Who wrote 'The Picture of Dorian Gray'?",
+            "correct_answer": "Oscar Wilde",
+            "incorrect_answers": ["F. Scott Fitzgerald", "Edgar Allan Poe", "Jane Austen"]
         },
         {
-            "question": "What is 35 + 34?",
-            "correct_answer": "69 HEHE",
-            "incorrect_answers": ["2137", "3.14", "111"]
+            "question": "Which is the smallest planet in our solar system?",
+            "correct_answer": "Mercury",
+            "incorrect_answers": ["Pluto", "Mars", "Venus"]
+        },
+        {
+            "question": "How many planets are there in our solar system?",
+            "correct_answer": "8",
+            "incorrect_answers": ["7", "9", "10"]
+        },
+        {
+            "question": "What is the currency of India?",
+            "correct_answer": "Rupee",
+            "incorrect_answers": ["Dollar", "Euro", "Yen"]
+        },
+        {
+            "question": "What is the capital of Spain?",
+            "correct_answer": "Madrid",
+            "incorrect_answers": ["Barcelona", "Lisbon", "Paris"]
+        },
+        {
+            "question": "How many sides does a hexagon have?",
+            "correct_answer": "6",
+            "incorrect_answers": ["5", "7", "8"]
+        },
+        {
+            "question": "Who developed the theory of general relativity?",
+            "correct_answer": "Albert Einstein",
+            "incorrect_answers": ["Isaac Newton", "Niels Bohr", "Max Planck"]
+        },
+        {
+            "question": "Which ocean is the largest?",
+            "correct_answer": "Pacific Ocean",
+            "incorrect_answers": ["Atlantic Ocean", "Indian Ocean", "Southern Ocean"]
+        },
+        {
+            "question": "Who wrote 'Harry Potter' series?",
+            "correct_answer": "J.K. Rowling",
+            "incorrect_answers": ["J.R.R. Tolkien", "George R.R. Martin", "Suzanne Collins"]
+        },
+        {
+            "question": "What is the capital of Australia?",
+            "correct_answer": "Canberra",
+            "incorrect_answers": ["Sydney", "Melbourne", "Brisbane"]
+        },
+        {
+            "question": "How many continents are there?",
+            "correct_answer": "7",
+            "incorrect_answers": ["5", "6", "8"]
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "correct_answer": "Mars",
+            "incorrect_answers": ["Venus", "Jupiter", "Saturn"]
+        },
+        {
+            "question": "Who painted the Mona Lisa?",
+            "correct_answer": "Leonardo da Vinci",
+            "incorrect_answers": ["Vincent van Gogh", "Pablo Picasso", "Michelangelo"]
+        },
+        {
+            "question": "What is the largest mammal in the world?",
+            "correct_answer": "Blue Whale",
+            "incorrect_answers": ["Elephant", "Giraffe", "Hippopotamus"]
+        },
+        {
+            "question": "What is the capital of France?",
+            "correct_answer": "Paris",
+            "incorrect_answers": ["Berlin", "London", "Rome"]
+        },
+        {
+            "question": "Which river is the longest in the world?",
+            "correct_answer": "Nile",
+            "incorrect_answers": ["Amazon", "Mississippi", "Yangtze"]
+        },
+        {
+            "question": "Who developed the theory of relativity?",
+            "correct_answer": "Albert Einstein",
+            "incorrect_answers": ["Isaac Newton", "Galileo Galilei", "Stephen Hawking"]
+        },
+        {
+            "question": "Who is the current President of the United States (2024)?",
+            "correct_answer": "Joe Biden",
+            "incorrect_answers": ["Donald Trump", "Barack Obama", "George W. Bush"]
+        },
+        {
+            "question": "Who painted 'Sunflowers'?",
+            "correct_answer": "Vincent van Gogh",
+            "incorrect_answers": ["Pablo Picasso", "Claude Monet", "Leonardo da Vinci"]
+        },
+        {
+            "question": "What is the capital of Japan?",
+            "correct_answer": "Tokyo",
+            "incorrect_answers": ["Seoul", "Beijing", "Bangkok"]
+        },
+        {
+            "question": "What is the currency of Germany?",
+            "correct_answer": "Euro",
+            "incorrect_answers": ["Pound Sterling", "Dollar", "Yen"]
+        },
+        {
+            "question": "What is the main ingredient in guacamole?",
+            "correct_answer": "Avocado",
+            "incorrect_answers": ["Tomato", "Onion", "Lime"]
+        },
+        {
+            "question": "Who wrote 'Romeo and Juliet'?",
+            "correct_answer": "William Shakespeare",
+            "incorrect_answers": ["Jane Austen", "Charles Dickens", "Mark Twain"]
+        },
+        {
+            "question": "Which gas do plants absorb during photosynthesis?",
+            "correct_answer": "Carbon Dioxide",
+            "incorrect_answers": ["Oxygen", "Nitrogen", "Methane"]
+        },
+        {
+            "question": "What is the largest planet in our solar system?",
+            "correct_answer": "Jupiter",
+            "incorrect_answers": ["Saturn", "Neptune", "Mars"]
+        },
+        {
+            "question": "Who is the author of 'To Kill a Mockingbird'?",
+            "correct_answer": "Harper Lee",
+            "incorrect_answers": ["J.K. Rowling", "Ernest Hemingway", "George Orwell"]
+        },
+        {
+            "question": "What is the capital of China?",
+            "correct_answer": "Beijing",
+            "incorrect_answers": ["Shanghai", "Hong Kong", "Tokyo"]
+        },
+        {
+            "question": "How many colors are there in a rainbow?",
+            "correct_answer": "7",
+            "incorrect_answers": ["5", "6", "8"]
+        },
+        {
+            "question": "Who wrote 'Pride and Prejudice'?",
+            "correct_answer": "Jane Austen",
+            "incorrect_answers": ["Charles Dickens", "Emily Bronte", "Mark Twain"]
+        },
+        {
+            "question": "Which is the smallest prime number?",
+            "correct_answer": "2",
+            "incorrect_answers": ["1", "3", "5"]
+        },
+        {
+            "question": "Who wrote 'The Hobbit'?",
+            "correct_answer": "J.R.R. Tolkien",
+            "incorrect_answers": ["J.K. Rowling", "George R.R. Martin", "C.S. Lewis"]
+        },
+        {
+            "question": "Who painted 'The Starry Night'?",
+            "correct_answer": "Vincent van Gogh",
+            "incorrect_answers": ["Pablo Picasso", "Claude Monet", "Leonardo da Vinci"]
+        },
+        {
+            "question": "What is the capital of Mexico?",
+            "correct_answer": "Mexico City",
+            "incorrect_answers": ["Cancun", "Guadalajara", "Monterrey"]
+        },
+        {
+            "question": "In which country is the Great Barrier Reef located?",
+            "correct_answer": "Australia",
+            "incorrect_answers": ["Brazil", "Mexico", "Philippines"]
+        },
+        {
+            "question": "What is the capital of Brazil?",
+            "correct_answer": "Brasilia",
+            "incorrect_answers": ["Rio de Janeiro", "Sao Paulo", "Buenos Aires"]
+        },
+        {
+            "question": "How many letters are there in the English alphabet?",
+            "correct_answer": "26",
+            "incorrect_answers": ["24", "28", "30"]
+        },
+        {
+            "question": "What is the capital of Italy?",
+            "correct_answer": "Rome",
+            "incorrect_answers": ["Milan", "Florence", "Naples"]
+        },
+        {
+            "question": "Who wrote 'The Catcher in the Rye'?",
+            "correct_answer": "J.D. Salinger",
+            "incorrect_answers": ["F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain"]
+        },
+        {
+            "question": "What is the currency of Japan?",
+            "correct_answer": "Yen",
+            "incorrect_answers": ["Won", "Baht", "Ringgit"]
+        },
+        {
+            "question": "What is the capital of Russia?",
+            "correct_answer": "Moscow",
+            "incorrect_answers": ["St. Petersburg", "Kiev", "Warsaw"]
+        },
+        {
+            "question": "Who wrote 'The Odyssey'?",
+            "correct_answer": "Homer",
+            "incorrect_answers": ["Virgil", "Aesop", "Sophocles"]
+        },
+        {
+            "question": "In which year did World War I begin?",
+            "correct_answer": "1914",
+            "incorrect_answers": ["1916", "1918", "1920"]
+        },
+        {
+            "question": "What is the main ingredient in hummus?",
+            "correct_answer": "Chickpeas",
+            "incorrect_answers": ["Olive Oil", "Tahini", "Yogurt"]
+        },
+        {
+            "question": "What is the currency of China?",
+            "correct_answer": "Yuan",
+            "incorrect_answers": ["Yen", "Won", "Ringgit"]
         }
     ],
     "medium": [
         {
-            "question": "What?",
-            "correct_answer": "Everything",
-            "incorrect_answers": ["Nothing", "Hamster", "Strawberry"]
+            "question": "Who wrote 'The Great Expectations'?",
+            "correct_answer": "Charles Dickens",
+            "incorrect_answers": ["Jane Austen", "Mark Twain", "Emily Bronte"]
         },
         {
-            "question": "Which Spider-Man actor was the first out of mentioned below",
-            "correct_answer": "Tobey Maguire",
-            "incorrect_answers": ["Tom Holland", "Andrew Garfield", "Shameik Moore"]
+            "question": "What is the chemical symbol for the element silver?",
+            "correct_answer": "Ag",
+            "incorrect_answers": ["Au", "Fe", "Cu"]
         },
         {
-            "question": "Who created \"My Love Mine All Mine\"?",
-            "correct_answer": "Mitski",
-            "incorrect_answers": ["Lana Del Ray", "Taylor Swift", "Thom Yorke"]
+            "question": "In which year did the Russian Revolution take place?",
+            "correct_answer": "1917",
+            "incorrect_answers": ["1915", "1920", "1925"]
         },
         {
-            "question": "What is the best \"OK Computer\" song?",
-            "correct_answer": "Paranoid Android",
-            "incorrect_answers": ["Let Down", "Exit music (for a film)", "Subterranean Homesick Alien"]
+            "question": "In which year did World War II end?",
+            "correct_answer": "1945",
+            "incorrect_answers": ["1939", "1941", "1950"]
+        },
+        {
+            "question": "What is the largest desert in the world?",
+            "correct_answer": "Antarctica",
+            "incorrect_answers": ["Sahara", "Arabian", "Gobi"]
+        },
+        {
+            "question": "Who wrote 'The Count of Monte Cristo'?",
+            "correct_answer": "Alexandre Dumas",
+            "incorrect_answers": ["Victor Hugo", "Gustave Flaubert", "Emile Zola"]
+        },
+        {
+            "question": "Who discovered radium?",
+            "correct_answer": "Marie Curie",
+            "incorrect_answers": ["Albert Einstein", "Niels Bohr", "Ernest Rutherford"]
+        },
+        {
+            "question": "Who wrote 'The Grapes of Wrath'?",
+            "correct_answer": "John Steinbeck",
+            "incorrect_answers": ["F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain"]
+        },
+        {
+            "question": "Who wrote '1984'?",
+            "correct_answer": "George Orwell",
+            "incorrect_answers": ["Aldous Huxley", "Ray Bradbury", "H.G. Wells"]
+        },
+        {
+            "question": "In which country is the Taj Mahal located?",
+            "correct_answer": "India",
+            "incorrect_answers": ["Egypt", "Turkey", "China"]
+        },
+        {
+            "question": "Who is known as the 'Father of Modern Physics'?",
+            "correct_answer": "Albert Einstein",
+            "incorrect_answers": ["Isaac Newton", "Galileo Galilei", "Niels Bohr"]
+        },
+        {
+            "question": "What is the capital of South Korea?",
+            "correct_answer": "Seoul",
+            "incorrect_answers": ["Tokyo", "Beijing", "Bangkok"]
+        },
+        {
+            "question": "Who wrote 'The Great Gatsby'?",
+            "correct_answer": "F. Scott Fitzgerald",
+            "incorrect_answers": ["Ernest Hemingway", "Jane Austen", "George Orwell"]
+        },
+        {
+            "question": "In which year did the Titanic sink?",
+            "correct_answer": "1912",
+            "incorrect_answers": ["1905", "1920", "1931"]
+        },
+        {
+            "question": "Who is known as the 'Father of Computers'?",
+            "correct_answer": "Charles Babbage",
+            "incorrect_answers": ["Alan Turing", "Ada Lovelace", "John von Neumann"]
+        },
+        {
+            "question": "Which country is known as the Land of the Rising Sun?",
+            "correct_answer": "Japan",
+            "incorrect_answers": ["China", "South Korea", "Vietnam"]
+        },
+        {
+            "question": "Who developed the first successful polio vaccine?",
+            "correct_answer": "Jonas Salk",
+            "incorrect_answers": ["Albert Sabin", "Edward Jenner", "Marie Curie"]
+        },
+        {
+            "question": "Who painted 'The Last Supper'?",
+            "correct_answer": "Leonardo da Vinci",
+            "incorrect_answers": ["Michelangelo", "Raphael", "Vincent van Gogh"]
+        },
+        {
+            "question": "Which is the smallest ocean?",
+            "correct_answer": "Arctic Ocean",
+            "incorrect_answers": ["Indian Ocean", "Southern Ocean", "Atlantic Ocean"]
+        },
+        {
+            "question": "In which country is Mount Everest located?",
+            "correct_answer": "Nepal",
+            "incorrect_answers": ["India", "Tibet", "China"]
+        },
+        {
+            "question": "Who discovered penicillin?",
+            "correct_answer": "Alexander Fleming",
+            "incorrect_answers": ["Louis Pasteur", "Marie Curie", "Robert Koch"]
+        },
+        {
+            "question": "What is the capital of South Africa?",
+            "correct_answer": "Pretoria",
+            "incorrect_answers": ["Cape Town", "Johannesburg", "Durban"]
+        },
+        {
+            "question": "What is the largest island in the world?",
+            "correct_answer": "Greenland",
+            "incorrect_answers": ["Australia", "Borneo", "Madagascar"]
+        },
+        {
+            "question": "What is the currency of Mexico?",
+            "correct_answer": "Peso",
+            "incorrect_answers": ["Dollar", "Euro", "Yen"]
+        },
+        {
+            "question": "What is the capital of Canada?",
+            "correct_answer": "Ottawa",
+            "incorrect_answers": ["Toronto", "Vancouver", "Montreal"]
+        },
+        {
+            "question": "What is the currency of South Korea?",
+            "correct_answer": "Won",
+            "incorrect_answers": ["Yen", "Baht", "Ringgit"]
+        },
+        {
+            "question": "Who is known as the 'Bard of Avon'?",
+            "correct_answer": "William Shakespeare",
+            "incorrect_answers": ["Jane Austen", "Charles Dickens", "Mark Twain"]
+        },
+        {
+            "question": "Who wrote 'The Jungle Book'?",
+            "correct_answer": "Rudyard Kipling",
+            "incorrect_answers": ["J.M. Barrie", "A.A. Milne", "Lewis Carroll"]
+        },
+        {
+            "question": "Who is known as the 'Maid of Orleans'?",
+            "correct_answer": "Joan of Arc",
+            "incorrect_answers": ["Cleopatra", "Queen Elizabeth I", "Boudicca"]
+        },
+        {
+            "question": "In which country is Mount Kilimanjaro located?",
+            "correct_answer": "Tanzania",
+            "incorrect_answers": ["Kenya", "Uganda", "Rwanda"]
+        },
+        {
+            "question": "Who wrote 'The Sun Also Rises'?",
+            "correct_answer": "Ernest Hemingway",
+            "incorrect_answers": ["F. Scott Fitzgerald", "J.D. Salinger", "Mark Twain"]
+        },
+        {
+            "question": "Who is known as the 'Father of Economics'?",
+            "correct_answer": "Adam Smith",
+            "incorrect_answers": ["John Maynard Keynes", "Karl Marx", "Milton Friedman"]
+        },
+        {
+            "question": "What is the largest desert in Asia?",
+            "correct_answer": "Gobi Desert",
+            "incorrect_answers": ["Arabian Desert", "Thar Desert", "Karakum Desert"]
+        },
+        {
+            "question": "What is the capital of Argentina?",
+            "correct_answer": "Buenos Aires",
+            "incorrect_answers": ["Rio de Janeiro", "Sao Paulo", "Montevideo"]
+        },
+        {
+            "question": "What is the boiling point of water in Fahrenheit?",
+            "correct_answer": "212 degrees Fahrenheit",
+            "incorrect_answers": ["180 degrees Fahrenheit", "200 degrees Fahrenheit", "220 degrees Fahrenheit"]
+        },
+        {
+            "question": "What is the currency of South Africa?",
+            "correct_answer": "Rand",
+            "incorrect_answers": ["Dollar", "Euro", "Pound Sterling"]
+        },
+        {
+            "question": "What is the largest bird in the world?",
+            "correct_answer": "Ostrich",
+            "incorrect_answers": ["Emu", "Albatross", "Condor"]
+        },
+        {
+            "question": "Who wrote 'The Canterbury Tales'?",
+            "correct_answer": "Geoffrey Chaucer",
+            "incorrect_answers": ["William Shakespeare", "John Milton", "Dante Alighieri"]
+        },
+        {
+            "question": "What is the capital of Turkey?",
+            "correct_answer": "Ankara",
+            "incorrect_answers": ["Istanbul", "Izmir", "Antalya"]
+        },
+        {
+            "question": "Who developed the theory of evolution?",
+            "correct_answer": "Charles Darwin",
+            "incorrect_answers": ["Alfred Russel Wallace", "Gregor Mendel", "Jean-Baptiste Lamarck"]
+        },
+        {
+            "question": "In which year did the Berlin Wall fall?",
+            "correct_answer": "1989",
+            "incorrect_answers": ["1985", "1990", "1995"]
+        },
+        {
+            "question": "What is the capital of Chile?",
+            "correct_answer": "Santiago",
+            "incorrect_answers": ["Buenos Aires", "Lima", "Bogota"]
+        },
+        {
+            "question": "Who is known as the 'Iron Lady'?",
+            "correct_answer": "Margaret Thatcher",
+            "incorrect_answers": ["Angela Merkel", "Hillary Clinton", "Indira Gandhi"]
+        },
+        {
+            "question": "What is the capital of Thailand?",
+            "correct_answer": "Bangkok",
+            "incorrect_answers": ["Seoul", "Beijing", "Tokyo"]
+        },
+        {
+            "question": "Who wrote 'One Flew Over the Cuckoo's Nest'?",
+            "correct_answer": "Ken Kesey",
+            "incorrect_answers": ["George Orwell", "J.D. Salinger", "Harper Lee"]
+        },
+        {
+            "question": "What is the smallest country in the world?",
+            "correct_answer": "Vatican City",
+            "incorrect_answers": ["Monaco", "Nauru", "Tuvalu"]
+        },
+        {
+            "question": "What is the largest prime number less than 100?",
+            "correct_answer": "97",
+            "incorrect_answers": ["89", "93", "101"]
+        },
+        {
+            "question": "Who formulated the laws of motion?",
+            "correct_answer": "Isaac Newton",
+            "incorrect_answers": ["Galileo Galilei", "Johannes Kepler", "Albert Einstein"]
         }
     ],
     "hard": [
         {
-            "question": "Are you the strongest because you're Gojo Satoru? Or does being the strongest make you Gojo Satoru?",
-            "correct_answer": "What are you trying to say?",
-            "incorrect_answers": ["Satoru...", "Salmon", "Suguru..."]
+            "question": "What is the speed of light (approximately)?",
+            "correct_answer": "300,000 kilometers per second",
+            "incorrect_answers": ["150,000 kilometers per second", "500,000 kilometers per second", "1 million kilometers per second"]
         },
         {
-            "question": "What LED diode color is the best?",
-            "correct_answer": "Blue",
-            "incorrect_answers": ["Red", "Green", "Yellow"]
+            "question": "What is the molecular formula of benzene?",
+            "correct_answer": "C6H6",
+            "incorrect_answers": ["CH4", "C2H4", "C4H10"]
         },
         {
-            "question": "Who is the sigma?",
-            "correct_answer": "Ryan Gosling",
-            "incorrect_answers": ["Krzysztof Bosak", "Grzegorz Braun", "Robert Biedron"]
+            "question": "Who is the author of 'The Sound and the Fury'?",
+            "correct_answer": "William Faulkner",
+            "incorrect_answers": ["F. Scott Fitzgerald", "Ernest Hemingway", "J.D. Salinger"]
+        },
+        {
+            "question": "What is the freezing point of liquid nitrogen?",
+            "correct_answer": "-210 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "-20 degrees Celsius", "-150 degrees Celsius"]
+        },
+        {
+            "question": "What is the capital of Kazakhstan?",
+            "correct_answer": "Astana",
+            "incorrect_answers": ["Almaty", "Tashkent", "Shymkent"]
+        },
+        {
+            "question": "Who is the author of 'One Hundred Years of Solitude'?",
+            "correct_answer": "Gabriel Garcia Marquez",
+            "incorrect_answers": ["Isabel Allende", "Mario Vargas Llosa", "Jorge Luis Borges"]
+        },
+        {
+            "question": "Who is the author of 'Crime and Punishment'?",
+            "correct_answer": "Fyodor Dostoevsky",
+            "incorrect_answers": ["Leo Tolstoy", "Anton Chekhov", "Ivan Turgenev"]
+        },
+        {
+            "question": "What is the chemical symbol for the element gold?",
+            "correct_answer": "Au",
+            "incorrect_answers": ["Ag", "Fe", "Cu"]
+        },
+        {
+            "question": "In which year did the Industrial Revolution begin?",
+            "correct_answer": "1760",
+            "incorrect_answers": ["1800", "1850", "1900"]
+        },
+        {
+            "question": "What is the boiling point of water on Mount Everest?",
+            "correct_answer": "68 degrees Celsius",
+            "incorrect_answers": ["100 degrees Celsius", "80 degrees Celsius", "50 degrees Celsius"]
+        },
+        {
+            "question": "Who is the author of 'War and Peace'?",
+            "correct_answer": "Leo Tolstoy",
+            "incorrect_answers": ["Fyodor Dostoevsky", "Anton Chekhov", "Ivan Turgenev"]
+        },
+        {
+            "question": "Who discovered the neutron?",
+            "correct_answer": "James Chadwick",
+            "incorrect_answers": ["Ernest Rutherford", "Niels Bohr", "Marie Curie"]
+        },
+        {
+            "question": "What is the capital of Bhutan?",
+            "correct_answer": "Thimphu",
+            "incorrect_answers": ["Paro", "Phuentsholing", "Punakha"]
+        },
+        {
+            "question": "What is the boiling point of liquid helium?",
+            "correct_answer": "-269 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "-20 degrees Celsius", "-150 degrees Celsius"]
+        },
+        {
+            "question": "Who is the author of 'The Brothers Karamazov'?",
+            "correct_answer": "Fyodor Dostoevsky",
+            "incorrect_answers": ["Leo Tolstoy", "Anton Chekhov", "Ivan Turgenev"]
+        },
+        {
+            "question": "Who is known as the 'Father of Chemistry'?",
+            "correct_answer": "Antoine Lavoisier",
+            "incorrect_answers": ["Robert Boyle", "John Dalton", "Dmitri Mendeleev"]
+        },
+        {
+            "question": "What is the capital of Liechtenstein?",
+            "correct_answer": "Vaduz",
+            "incorrect_answers": ["Bern", "Luxembourg", "Monaco"]
+        },
+        {
+            "question": "What is the boiling point of liquid oxygen?",
+            "correct_answer": "-183 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "-20 degrees Celsius", "-150 degrees Celsius"]
+        },
+        {
+            "question": "Who developed the first successful smallpox vaccine?",
+            "correct_answer": "Edward Jenner",
+            "incorrect_answers": ["Louis Pasteur", "Jonas Salk", "Albert Sabin"]
+        },
+        {
+            "question": "What is the capital of Iceland?",
+            "correct_answer": "Reykjavik",
+            "incorrect_answers": ["Oslo", "Copenhagen", "Helsinki"]
+        },
+        {
+            "question": "Who discovered the X-rays?",
+            "correct_answer": "Wilhelm Roentgen",
+            "incorrect_answers": ["Marie Curie", "Niels Bohr", "Ernest Rutherford"]
+        },
+        {
+            "question": "What is the capital of Andorra?",
+            "correct_answer": "Andorra la Vella",
+            "incorrect_answers": ["Barcelona", "Madrid", "Lisbon"]
+        },
+        {
+            "question": "What is the chemical symbol for the element mercury?",
+            "correct_answer": "Hg",
+            "incorrect_answers": ["Mg", "Ag", "Pb"]
+        },
+        {
+            "question": "Who formulated the theory of electromagnetic fields?",
+            "correct_answer": "James Clerk Maxwell",
+            "incorrect_answers": ["Michael Faraday", "Isaac Newton", "Nikola Tesla"]
+        },
+        {
+            "question": "What is the capital of Luxembourg?",
+            "correct_answer": "Luxembourg City",
+            "incorrect_answers": ["Brussels", "Amsterdam", "Berlin"]
+        },
+        {
+            "question": "Who is known as the 'Father of Geometry'?",
+            "correct_answer": "Euclid",
+            "incorrect_answers": ["Pythagoras", "Archimedes", "Aristotle"]
+        },
+        {
+            "question": "What is the boiling point of liquid methane?",
+            "correct_answer": "-161.5 degrees Celsius",
+            "incorrect_answers": ["2.5 degrees Celsius", "-20.5 degrees Celsius", "-100 degrees Celsius"]
+        },
+        {
+            "question": "Who is the author of 'The Divine Comedy'?",
+            "correct_answer": "Dante Alighieri",
+            "incorrect_answers": ["Geoffrey Chaucer", "Homer", "Virgil"]
+        },
+        {
+            "question": "What is the capital of Sudan?",
+            "correct_answer": "Khartoum",
+            "incorrect_answers": ["Cairo", "Nairobi", "Addis Ababa"]
+        },
+        {
+            "question": "What is the speed of sound at sea level?",
+            "correct_answer": "343 meters per second",
+            "incorrect_answers": ["300 meters per second", "400 meters per second", "500 meters per second"]
+        },
+        {
+            "question": "Who is known as the 'Father of Modern Chemistry'?",
+            "correct_answer": "Antoine Lavoisier",
+            "incorrect_answers": ["Dmitri Mendeleev", "Marie Curie", "Robert Boyle"]
+        },
+        {
+            "question": "What is the boiling point of liquid nitrogen?",
+            "correct_answer": "-196 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "100 degrees Celsius", "-20 degrees Celsius"]
+        },
+        {
+            "question": "What is the capital of Mongolia?",
+            "correct_answer": "Ulaanbaatar",
+            "incorrect_answers": ["Astana", "Seoul", "Hanoi"]
+        },
+        {
+            "question": "Who discovered penicillin?",
+            "correct_answer": "Alexander Fleming",
+            "incorrect_answers": ["Louis Pasteur", "Marie Curie", "Robert Koch"]
+        },
+        {
+            "question": "What is the chemical symbol for the element platinum?",
+            "correct_answer": "Pt",
+            "incorrect_answers": ["Au", "Ag", "Ir"]
+        },
+        {
+            "question": "Who is the author of 'The Republic'?",
+            "correct_answer": "Plato",
+            "incorrect_answers": ["Aristotle", "Socrates", "Sophocles"]
+        },
+        {
+            "question": "What is the chemical symbol for the element silver?",
+            "correct_answer": "Ag",
+            "incorrect_answers": ["Au", "Fe", "Cu"]
+        },
+        {
+            "question": "Who developed the first successful smallpox vaccine?",
+            "correct_answer": "Edward Jenner",
+            "incorrect_answers": ["Louis Pasteur", "Jonas Salk", "Albert Sabin"]
+        },
+        {
+            "question": "What is the boiling point of liquid oxygen?",
+            "correct_answer": "-183 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "-20 degrees Celsius", "-150 degrees Celsius"]
+        },
+        {
+            "question": "Who is the author of 'The Wealth of Nations'?",
+            "correct_answer": "Adam Smith",
+            "incorrect_answers": ["John Maynard Keynes", "Karl Marx", "Milton Friedman"]
+        },
+        {
+            "question": "What is the capital of Lebanon?",
+            "correct_answer": "Beirut",
+            "incorrect_answers": ["Amman", "Damascus", "Cairo"]
+        },
+        {
+            "question": "What is the chemical symbol for the element uranium?",
+            "correct_answer": "U",
+            "incorrect_answers": ["Un", "Us", "Ur"]
+        },
+        {
+            "question": "Who discovered the electron?",
+            "correct_answer": "J.J. Thomson",
+            "incorrect_answers": ["Ernest Rutherford", "Niels Bohr", "Marie Curie"]
+        },
+        {
+            "question": "What is the boiling point of liquid neon?",
+            "correct_answer": "-246 degrees Celsius",
+            "incorrect_answers": ["0 degrees Celsius", "-20 degrees Celsius", "-150 degrees Celsius"]
+        },
+        {
+            "question": "Who formulated the laws of thermodynamics?",
+            "correct_answer": "Rudolf Clausius",
+            "incorrect_answers": ["Lord Kelvin", "James Clerk Maxwell", "Isaac Newton"]
+        },
+        {
+            "question": "What is the chemical symbol for the element bohrium?",
+            "correct_answer": "Bh",
+            "incorrect_answers": ["B", "Br", "Bo"]
+        },
+        {
+            "question": "What is the capital of Afghanistan?",
+            "correct_answer": "Kabul",
+            "incorrect_answers": ["Islamabad", "Tehran", "Baghdad"]
         }
     ]
 }
