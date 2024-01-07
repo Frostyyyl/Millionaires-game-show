@@ -65,6 +65,7 @@ bool QuestionsHandler::checkAnswer(int index){
 void QuestionsHandler::resetQuestions(){
     availableQuestions = questions;
     questionCounter = 0;
+    tier = 0;
 }
 
 Question QuestionsHandler::getQuestion(){
@@ -144,6 +145,7 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
     if(type == BACK_START_GAME){ // have to be ifs cause of declarations of variables
+        resetQuestions(); // added this so i could use start button as reset button
         std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
         Bridge::getInstance().addMessage(FRONT_START_GAME, res, questionCounter, getScore()); // for now next question cause we dont have start menu (also had to add counter and score)
     }
