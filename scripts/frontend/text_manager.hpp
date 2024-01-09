@@ -26,7 +26,7 @@ public:
     SDL_Texture* loadText(TTF_Font* font, Text &contents, Text &prefix, SDL_Rect &dest){
         SDL_Surface* tempSurface = SDL_CreateRGBSurface(0, dest.w, dest.h, 32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
         SDL_Surface* charSurface = TTF_RenderText_Blended_Wrapped(mediumFont, prefix.text.c_str(), {255, 15, 76}, prefix.dest.w);
-        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, contents.text.c_str(), {12, 12, 12}, contents.dest.w);
+        SDL_Surface* textSurface = TTF_RenderText_Blended_Wrapped(font, contents.text.c_str(), {12, 15, 10}, contents.dest.w);
         if (!tempSurface){
             std::cerr << "Failed to render text surface: " << TTF_GetError() << std::endl;
         } if (!textSurface) {
