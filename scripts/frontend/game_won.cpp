@@ -2,7 +2,9 @@
 #include "button_system.hpp"
 #include "scene_manager.hpp"
 
-Button* retryButton = nullptr;
+Button* retryButtonGameWon = nullptr;
+Button* exitButtonGameWon = nullptr;
+Sprite* backgroundGameWon = nullptr;
 
 GameWon::GameWon(){}
 GameWon::~GameWon(){}
@@ -13,12 +15,17 @@ GameWon& GameWon::getInstance(){
 }
 
 void GameWon::init (){
-    retryButton = new Button("images/button_spritesheet.png", 400, 400, 2, 1); 
+    backgroundGameWon = new Sprite("images/game_won_screen.png", 0, 0);
+    retryButtonGameWon = new Button("images/button_spritesheet.png", 395, 400, START_GAME); 
+    exitButtonGameWon = new Button("images/exit_button.png", 395, 550, EXIT); 
 }
 
 void GameWon::start(){
-    SceneManager::getInstance().objectManager.addObject(retryButton);
-    SceneManager::getInstance().inputManager.addButton(retryButton);
+    SceneManager::getInstance().objectManager.addObject(backgroundGameWon);
+    SceneManager::getInstance().objectManager.addObject(retryButtonGameWon);
+    SceneManager::getInstance().objectManager.addObject(exitButtonGameWon);
+    SceneManager::getInstance().inputManager.addButton(retryButtonGameWon);
+    SceneManager::getInstance().inputManager.addButton(exitButtonGameWon);
 }
 
 void GameWon::clean(){

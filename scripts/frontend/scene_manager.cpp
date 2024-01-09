@@ -7,6 +7,10 @@
 #include "game_over.hpp"
 #include "text_manager.hpp"
 
+bool SceneManager::PHONE_USED = false;
+bool SceneManager::AUDIENCE_USED = false;
+bool SceneManager::FIFTY_FIFTY_USED = false;
+
 SDL_Rect Mouse::pointer;
 SDL_Renderer* SceneManager::renderer = nullptr;
 SDL_Event SceneManager::event;
@@ -78,7 +82,22 @@ void SceneManager::processMessage(std::unique_ptr<BaseMessage> msg){
     MessageType type = msg->getMessageType();
     switch (type){
     case FRONT_START_GAME:
+        PHONE_USED = false;
+        FIFTY_FIFTY_USED = false;
+        AUDIENCE_USED = false;
         changeScene(GAME);
+        scenes[GAME]->processMessage(std::move(msg));
+        break;
+    case FRONT_50_50:
+        FIFTY_FIFTY_USED = true;
+        scenes[GAME]->processMessage(std::move(msg));
+        break;
+    case FRONT_PHONE:
+        PHONE_USED = true;
+        scenes[GAME]->processMessage(std::move(msg));
+        break;
+    case FRONT_AUDIENCE:
+        AUDIENCE_USED = true;
         scenes[GAME]->processMessage(std::move(msg));
         break;
     case FRONT_GAME_WON:
@@ -86,6 +105,9 @@ void SceneManager::processMessage(std::unique_ptr<BaseMessage> msg){
         break;
     case FRONT_GAME_OVER:
         changeScene(GAME_OVER);
+        break;
+    case FRONT_EXIT:
+        SceneManager::getInstance().quit();
         break;
     default:
         scenes[currentScene]->processMessage(std::move(msg));
@@ -130,3 +152,8 @@ void SceneManager::clear(){
 bool SceneManager::running(){
     return isRunning;
 }
+
+
+bool SceneManager::getFiftyFifty(){ return FIFTY_FIFTY_USED; }
+bool SceneManager::getPhone(){ return PHONE_USED; }
+bool SceneManager::getAudience(){ return AUDIENCE_USED; }

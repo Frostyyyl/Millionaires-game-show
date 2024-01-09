@@ -11,4 +11,5 @@ public:
     void update();
     void addButton(ButtonBase* button);
     void clear();
+    void erase(ButtonBase* button);
 };

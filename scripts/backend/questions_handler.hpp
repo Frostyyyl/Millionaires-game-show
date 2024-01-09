@@ -52,5 +52,6 @@ public:
     int getTier();
     int getQuestionCounter();
     std::string getScore();
+    std::string getPrize();
     void processMessage(std::unique_ptr<BaseMessage> msg);
 };

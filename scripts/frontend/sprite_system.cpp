@@ -20,6 +20,11 @@ void Sprite::update(){
     // we are not changing sprite's position, so currently blank
 };
 
+void Sprite::destroy(){
+    SDL_DestroyTexture(tex);
+    this->~Sprite();
+}
+
 int Sprite::getWidth(){
     return width;
 }
@@ -74,7 +79,12 @@ void TextSprite::loadData(std::string data){
         }
     }
     // center the text (depending on the font might have to change the value of MOVE_VERTICALLY)
-    contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY;
+    if (dest.h < 150){
+        contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY;
+    } else {
+        contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY - 60;
+    }
+
 
     textTexture = TextManager::getInstance().loadText(font, contents, dest);
 }
@@ -83,6 +93,10 @@ void TextSprite::draw(){
     TextManager::getInstance().draw(textTexture, dest);
 }
 
+void TextSprite::destroy(){
+    SDL_DestroyTexture(textTexture);
+    this->~TextSprite();
+}
 
 DoubleTextsprite::DoubleTextsprite(const char* filename, int x, int y, std::string prefixData, std::string data, std::string flush,
                 int numOfColumns, int numOfRows) : Spritesheet(filename, x, y, numOfColumns, numOfRows), flush(flush){
@@ -119,4 +133,9 @@ void DoubleTextsprite::loadData(std::string data){
 void DoubleTextsprite::draw(){
     TextureManager::Draw(tex, src, dest);
     TextManager::getInstance().draw(textTexture, dest);
+}
+
+void DoubleTextsprite::destroy(){
+    SDL_DestroyTexture(textTexture);
+    this->~DoubleTextsprite();
 }

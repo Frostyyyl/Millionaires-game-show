@@ -2,7 +2,9 @@
 #include "button_system.hpp"
 #include "scene_manager.hpp"
 
-Button* retryOverButton = nullptr;
+Button* retryButtonGameOver = nullptr;
+Button* exitButtonGameOver = nullptr;
+Sprite* backgroundGameOver = nullptr;
 
 GameOver::GameOver(){}
 GameOver::~GameOver(){}
@@ -13,12 +15,17 @@ GameOver& GameOver::getInstance(){
 }
 
 void GameOver::init (){
-    retryOverButton = new Button("images/button_spritesheet.png", 400, 100, 2, 1); 
+    backgroundGameOver = new Sprite("images/game_over_screen.png", 0, 0);
+    retryButtonGameOver = new Button("images/button_spritesheet.png", 395, 400, START_GAME); 
+    exitButtonGameOver = new Button("images/exit_button.png", 395, 550, EXIT); 
 }
 
 void GameOver::start(){
-    SceneManager::getInstance().objectManager.addObject(retryOverButton);
-    SceneManager::getInstance().inputManager.addButton(retryOverButton);
+    SceneManager::getInstance().objectManager.addObject(backgroundGameOver);
+    SceneManager::getInstance().objectManager.addObject(retryButtonGameOver);
+    SceneManager::getInstance().objectManager.addObject(exitButtonGameOver);
+    SceneManager::getInstance().inputManager.addButton(retryButtonGameOver);
+    SceneManager::getInstance().inputManager.addButton(exitButtonGameOver);
 }
 
 void GameOver::clean(){

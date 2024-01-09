@@ -13,6 +13,7 @@ public:
     Sprite(const char* filename, int x, int y);
     void draw() override;
     void update() override;
+    void destroy() override;
     int getWidth();
     int getHeight();
     SDL_Rect& getPosition();
@@ -41,6 +42,7 @@ public:
     TextSprite(const char* filename, int x, int y, std::string data, int numOfColumns = 1, int numOfRows = 1);
     void loadData(std::string data);
     void draw() override;
+    void destroy() override;
 };
 
 class DoubleTextsprite : public Spritesheet{
@@ -59,4 +61,5 @@ public:
     void loadData(std::string data);
 
     void draw() override;
+    void destroy() override;
 };

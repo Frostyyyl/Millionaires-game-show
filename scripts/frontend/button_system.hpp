@@ -4,6 +4,8 @@
 
 static bool ANSWER_SELECTED = false;
 
+enum ButtonFunction {START_GAME, PHONE, AUDIENCE, FIFTY_FIFTY, EXIT};
+
 class ButtonBase : public Object{
 public:
     ButtonBase(){}
@@ -15,9 +17,10 @@ public:
 class Button : public ButtonBase{
 private:
     Spritesheet spritesheet;
+    ButtonFunction id;
 public:
-    Button(const char* filename, int x, int y, int numOfColumns = 2, int numOfRows = 1)
-    : ButtonBase(x, y), spritesheet(filename, x, y, numOfColumns, numOfRows){}
+    Button(const char* filename, int x, int y, ButtonFunction id, int numOfColumns = 2, int numOfRows = 1)
+    : ButtonBase(x, y), spritesheet(filename, x, y, numOfColumns, numOfRows), id(id){}
 
     bool isClicked(int x, int y){
         if(pos.x < x && spritesheet.getWidth() + pos.x > x && pos.y < y && spritesheet.getHeight() + pos.y > y){
@@ -26,8 +29,27 @@ public:
         return false;
     }
     void onClick(){
-        std::cout << "Button was clicked " << std::endl; 
-        Bridge::getInstance().addMessage(BACK_START_GAME);
+        switch (id)
+        {
+        case START_GAME:
+            Bridge::getInstance().addMessage(BACK_START_GAME);
+            break;
+        case FIFTY_FIFTY:
+            Bridge::getInstance().addMessage(BACK_50_50);
+            break;
+        case PHONE:
+            Bridge::getInstance().addMessage(BACK_PHONE);
+            break;
+        case AUDIENCE:
+            Bridge::getInstance().addMessage(BACK_AUDIENCE);
+            break;
+        case EXIT:
+            Bridge::getInstance().addMessage(FRONT_EXIT);
+            break;
+        default:
+            std::cerr << "Failed to press a button" << std::endl;
+            break;
+        }
     }
     void draw() override{
         spritesheet.draw();
@@ -42,7 +64,7 @@ public:
     }
     void destroy(){
         spritesheet.destroy();
-        this->destroy();
+        this->~Button();
     }
 };
 
@@ -86,6 +108,6 @@ public:
     }
     void destroy(){
         spritesheet.destroy();
-        this->destroy();
+        this->~TextButton();
     }
 };

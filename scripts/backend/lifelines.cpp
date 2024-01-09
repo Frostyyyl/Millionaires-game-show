@@ -1,8 +1,14 @@
 #include "lifelines.hpp"
+#include "bridge.hpp"
 
 Lifeline::Lifeline() : questionsHandler(QuestionsHandler::getInstance()){}
 
 Lifeline::~Lifeline() {}
+
+Half& Half::getInstance(){
+    static Half INSTANCE;
+    return INSTANCE;
+}
 
 std::vector<std::string> Half::interact(){
     Question question = questionsHandler.getQuestion();
@@ -12,9 +18,12 @@ std::vector<std::string> Half::interact(){
     answers.push_back(question.incorrectAnswers[rng(g)]);
     std::shuffle(answers.begin(), answers.end(), g);
     questionsHandler.setAvailableAnswers(answers);
-    answers.push_back(" ");  //PUSTY
-    answers.push_back(" ");  //PUSTY
     return answers;
+}
+
+Phone& Phone::getInstance(){
+    static Phone INSTANCE;
+    return INSTANCE;
 }
 
 int Phone::setKnowledge(){
@@ -114,6 +123,11 @@ std::vector<std::string> Phone::interact(){
     return message;
 }
 
+Audience& Audience::getInstance(){
+    static Audience INSTANCE;
+    return INSTANCE;
+}
+
 int Audience::setCorrectPercentage(){
     int tier = questionsHandler.getTier();
     std::vector<std::string> availableAnswers = questionsHandler.getAvailableAnswers();
@@ -209,4 +223,19 @@ std::vector<std::string> Audience::interact(){
     int correctPercentage = this->setCorrectPercentage();
     std::vector<int> incorrectPercentages = this->getIncorrectPercentages(correctPercentage);
     return generateMessage(correctPercentage, incorrectPercentages);
+}
+
+void Half::processMessage(std::unique_ptr<BaseMessage> msg){
+    std::vector<std::string> res = interact();
+    Bridge::getInstance().addMessage(FRONT_50_50, res);
+}
+
+void Phone::processMessage(std::unique_ptr<BaseMessage> msg){
+    std::vector<std::string> res = interact();
+    Bridge::getInstance().addMessage(FRONT_PHONE, res);
+}
+
+void Audience::processMessage(std::unique_ptr<BaseMessage> msg){
+    std::vector<std::string> res = interact();
+    Bridge::getInstance().addMessage(FRONT_AUDIENCE, res);
 }

@@ -9,8 +9,6 @@ struct Position{
 };
 
 class Object{
-private:
-    bool active = true;
 protected:
     Position pos; 
 public:
@@ -19,8 +17,7 @@ public:
     ~Object(){}
     virtual void update() = 0;
     virtual void draw() = 0;
-    bool isActive(){ return active; }
-    void destroy(){ active = false; }
+    virtual void destroy() = 0;
 };
 
 class ObjectManager{
@@ -31,13 +28,20 @@ public:
         for(auto& obj : objects) obj->update();
     }
     void draw(){
-        for(auto& obj : objects) if(obj->isActive()) obj->draw();
+        for(auto& obj : objects) obj->draw();
     }
     void addObject(Object* obj){
         objects.emplace_back(obj);
     }
     void clear(){
         objects.clear();
+    }
+    void erase(Object* obj){
+        for (int i = 0; i < objects.size(); i++){
+            if (objects[i] == obj){
+                objects.erase(objects.begin() + i);
+            }
+        }
     }
 };
 
@@ -53,4 +57,5 @@ public:
     }
     void draw(){};
     static SDL_Rect& getPosition(){ return pointer; }
+    void destroy() override{ this->~Mouse();}
 };

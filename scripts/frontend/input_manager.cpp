@@ -29,3 +29,11 @@ void InputManager::addButton(ButtonBase* button){
 void InputManager::clear(){
     buttons.clear();
 }
+
+void InputManager::erase(ButtonBase* button){
+    for (int i = 0; i < buttons.size(); i++){
+        if (buttons[i] == button){
+            buttons.erase(buttons.begin() + i);
+        }
+    }
+}

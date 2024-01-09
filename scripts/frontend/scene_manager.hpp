@@ -15,6 +15,10 @@ enum GameScene{
 
 class SceneManager
 {
+private:
+    static bool PHONE_USED;
+    static bool AUDIENCE_USED;
+    static bool FIFTY_FIFTY_USED;
 public:
     static SceneManager& getInstance();
     void init(const char* title, int xpos, int ypos, int width, int height);
@@ -33,6 +37,10 @@ public:
     static InputManager inputManager;
     static ObjectManager objectManager;
     GameScene currentScene;
+
+    static bool getFiftyFifty();
+    static bool getPhone();
+    static bool getAudience();
 private:
     std::vector<Scene*> scenes;
     SDL_Window* window;

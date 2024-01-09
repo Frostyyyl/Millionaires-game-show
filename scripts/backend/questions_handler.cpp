@@ -126,11 +126,11 @@ std::string QuestionsHandler::getScore(){ // goofy but enough
     case 5:
         return "20 000";
     case 6:
-        return "50 000";
+        return "40 000";
     case 7:
         return "75 000";
     case 8:
-        return "100 000";
+        return "125 000";
     case 9:
         return "250 000";
     case 10:
@@ -138,37 +138,74 @@ std::string QuestionsHandler::getScore(){ // goofy but enough
     default:
         break;
     }
-    return "";
+    return " ";
 }
+
+std::string QuestionsHandler::getPrize(){ // goofy but enough
+    switch (questionCounter){
+    case 1:
+        return "1000";
+    case 2:
+        return "4000";
+    case 3:
+        return "5000";
+    case 4:
+        return "10 000";
+    case 5:
+        return "20 000";
+    case 6:
+        return "25 000";
+    case 7:
+        return "50 000";
+    case 8:
+        return "125 000";
+    case 9:
+        return "250 000";
+    case 10:
+        return "500 000";
+    default:
+        break;
+    }
+    return " ";
+}
+
+#include <iostream>
 
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
     std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
-    if(type == BACK_START_GAME){ // have to be ifs cause of declarations of variables
+    switch (type)
+    {{
+    case BACK_START_GAME:
         resetQuestions(); // added this so i could use start button as reset button
         std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-        Bridge::getInstance().addMessage(FRONT_START_GAME, res, questionCounter, getScore()); // for now next question cause we dont have start menu (also had to add counter and score)
-    }
-    else if(type == BACK_ANSWER){
+        Bridge::getInstance().addMessage(FRONT_START_GAME, res, questionCounter, getPrize(), getScore()); 
+        break; 
+    }{
+    case BACK_ANSWER:
         if (auto answerMsg = dynamic_cast<Message<int>*>(msg.get())) {
             int ans = std::get<0>(answerMsg->arguments);
             if(checkAnswer(ans)){
                 if(questionCounter == 10){ // if game completed
-                    std::cout << "game won" << std::endl;
+                    std::cout << "Game won" << std::endl;
                     Bridge::getInstance().addMessage(FRONT_GAME_WON);
                 }
                 else{
                     std::pair<std::string, std::vector<std::string>> res = getNextQuestion();
-                    Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res, questionCounter, getScore()); // need to add here , questioncounter
+                    Bridge::getInstance().addMessage(FRONT_NEXT_QUESTION, res, questionCounter, getPrize(), getScore()); // need to add here , questioncounter
                 }
             }
             else{
-                std::cout << "wrong answer" << std::endl;
+                std::cout << "Game over, wrong answer" << std::endl;
                 Bridge::getInstance().addMessage(FRONT_GAME_OVER);
             }
-        }
-        else{
+        } else {
             std::cerr << "Error while reading Answer from Message" << std::endl;
         }
+        break;
+    }
+    default:
+        std::cerr << "Backend could not process a message" << std::endl;
+        break;
     }
 }
