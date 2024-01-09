@@ -37,7 +37,7 @@ void Game::init (){
 
     phoneFriend = new Sprite("images/friend_sprite.png", 60, 15);
     phoneQuestion = new TextSprite("images/phone_question.png", 240, 15, " ");
-    phoneAnswer = new TextSprite("images/phone_answer.png", 240, 230, " ");
+    phoneAnswer = new TextSprite("images/phone_answer.png", 240, 210, " ");
 
     TextSprite* percentA = new TextSprite("images/percentage_sprite.png", 60, 15, " ");
     TextSprite* percentB = new TextSprite("images/percentage_sprite.png", 60, 65, " ");
@@ -134,8 +134,15 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
         }
         break;
     case FRONT_50_50:
+        for (int i = 0; i < 4; i++){
+            SceneManager::getInstance().objectManager.erase(percentages[i]);
+        }
+        SceneManager::getInstance().objectManager.erase(phoneFriend);
+        SceneManager::getInstance().objectManager.erase(phoneQuestion);
+        SceneManager::getInstance().objectManager.erase(phoneAnswer); 
         if (auto questionMsg = dynamic_cast<Message<std::vector<std::string>>*>(msg.get())) {
-            auto arguments = std::get<0>(questionMsg->arguments);
+            std::vector<std::string> arguments = std::get<0>(questionMsg->arguments);
+            std::cout << answers[0] << " " << answers[1];
             answers[0]->loadData(arguments[0]);
             answers[1]->loadData(arguments[1]);
             SceneManager::getInstance().objectManager.erase(answers[2]);  

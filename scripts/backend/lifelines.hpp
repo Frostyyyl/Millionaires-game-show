@@ -7,9 +7,8 @@
 
 class Lifeline{
 protected:
-    QuestionsHandler* questionsHandler;
-public:
     Lifeline();
+public:
     ~Lifeline();
     virtual std::vector<std::string> interact() {return std::vector<std::string>();};
     virtual void processMessage(std::unique_ptr<BaseMessage> msg) = 0;

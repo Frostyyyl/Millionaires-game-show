@@ -36,7 +36,7 @@ private:
     Text contents;
     TTF_Font* font;
     SDL_Texture* textTexture;
-    static const int MOVE_HORIZONTALLY = 5;
+    static const int MOVE_HORIZONTALLY = 10;
     static const int MOVE_VERTICALLY = -4;
 public:
     TextSprite(const char* filename, int x, int y, std::string data, int numOfColumns = 1, int numOfRows = 1);
@@ -53,7 +53,7 @@ private:
     TTF_Font* font;
     SDL_Texture* textTexture;
     static const int ALIGN = 3;
-    static const int MOVE_HORIZONTALLY = 5;
+    static const int MOVE_HORIZONTALLY = 10;
     static const int MOVE_VERTICALLY = -3;
 public:
     DoubleTextsprite(const char* filename, int x, int y, std::string prefixData, std::string data, std::string flush = "left",

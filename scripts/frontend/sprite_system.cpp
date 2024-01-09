@@ -79,10 +79,10 @@ void TextSprite::loadData(std::string data){
         }
     }
     // center the text (depending on the font might have to change the value of MOVE_VERTICALLY)
-    if (dest.h < 150){
+    if (dest.h < 120){
         contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY;
     } else {
-        contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY - 60;
+        contents.dest.y = (dest.h / 2) - (contents.dest.h / 2) + MOVE_VERTICALLY - 45;
     }
 
 
