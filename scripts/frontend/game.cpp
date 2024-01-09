@@ -60,6 +60,9 @@ void Game::init (){
 
 void Game::start(){
     SceneManager::getInstance().objectManager.addObject(background);
+    
+    SceneManager::getInstance().objectManager.addObject(currentQuestion);
+    SceneManager::getInstance().objectManager.addObject(currentPrize);
 
     for (auto & i : answers){
         SceneManager::getInstance().objectManager.addObject(i);
@@ -78,8 +81,6 @@ void Game::start(){
         SceneManager::getInstance().inputManager.addButton(audienceLifeline);
     }
     SceneManager::getInstance().objectManager.addObject(question);
-    SceneManager::getInstance().objectManager.addObject(currentQuestion);
-    SceneManager::getInstance().objectManager.addObject(currentPrize);
     SceneManager::getInstance().objectManager.addObject(score);
 }
 

@@ -1,7 +1,7 @@
 #include "lifelines.hpp"
 #include "bridge.hpp"
 
-Lifeline::Lifeline() : questionsHandler(QuestionsHandler::getInstance()){}
+Lifeline::Lifeline() : questionsHandler(&QuestionsHandler::getInstance()){}
 
 Lifeline::~Lifeline() {}
 
@@ -11,13 +11,14 @@ Half& Half::getInstance(){
 }
 
 std::vector<std::string> Half::interact(){
-    Question question = questionsHandler.getQuestion();
+    Question question = questionsHandler->getQuestion();
+    std::cout << questionsHandler->getQuestion().correctAnswer << std::endl;
     std::vector<std::string> answers;
     answers.push_back(question.correctAnswer);
     std::uniform_int_distribution<int> rng(0, 3);
     answers.push_back(question.incorrectAnswers[rng(g)]);
     std::shuffle(answers.begin(), answers.end(), g);
-    questionsHandler.setAvailableAnswers(answers);
+    questionsHandler->setAvailableAnswers(answers);
     return answers;
 }
 
@@ -27,7 +28,7 @@ Phone& Phone::getInstance(){
 }
 
 int Phone::setKnowledge(){
-    int tier = questionsHandler.getTier();
+    int tier = questionsHandler->getTier();
     if (tier == 0){
         std::uniform_int_distribution<int> rng(75,99);
         return rng(g);
@@ -44,8 +45,8 @@ int Phone::setKnowledge(){
 }
 
 int Phone::chooseAnswer(bool returnCorrectAnswer){
-    Question question = questionsHandler.getQuestion();
-    std::vector<std::string> availableAnswers = questionsHandler.getAvailableAnswers();
+    Question question = questionsHandler->getQuestion();
+    std::vector<std::string> availableAnswers = questionsHandler->getAvailableAnswers();
     if (returnCorrectAnswer){
         auto it = std::find(availableAnswers.begin(), availableAnswers.end(), question.correctAnswer);
         if (it != availableAnswers.end()){
@@ -67,7 +68,7 @@ int Phone::chooseAnswer(bool returnCorrectAnswer){
 }
 
 std::string Phone::generatePrompt(){
-    Question question = questionsHandler.getQuestion();
+    Question question = questionsHandler->getQuestion();
     std::string beggining = "Hello there. We are calling from the game show, because we need Your help. You have 30 seconds to answers this question:\n";
     std::string questionText = question.question;
     return beggining + questionText + "\n";
@@ -129,8 +130,8 @@ Audience& Audience::getInstance(){
 }
 
 int Audience::setCorrectPercentage(){
-    int tier = questionsHandler.getTier();
-    std::vector<std::string> availableAnswers = questionsHandler.getAvailableAnswers();
+    int tier = questionsHandler->getTier();
+    std::vector<std::string> availableAnswers = questionsHandler->getAvailableAnswers();
     bool halved;
     if (availableAnswers.size() == 2){
         halved = true;
@@ -172,7 +173,7 @@ int Audience::setCorrectPercentage(){
 
 std::vector<int> Audience::getIncorrectPercentages(int correctPercentage){
     std::vector<int> incorrectPercentages;
-    std::vector<std::string> availableAnswers = questionsHandler.getAvailableAnswers();
+    std::vector<std::string> availableAnswers = questionsHandler->getAvailableAnswers();
     int leftPercentage = 100 - correctPercentage;
     if (availableAnswers.size() == 2){
         incorrectPercentages.push_back(leftPercentage);
@@ -192,8 +193,8 @@ std::vector<int> Audience::getIncorrectPercentages(int correctPercentage){
 }
 
 std::vector<std::string> Audience::generateMessage(int correctPercentage, std::vector<int> incorrectPercentages){
-    std::vector<std::string> message, availableAnswers = questionsHandler.getAvailableAnswers();
-    Question question = questionsHandler.getQuestion();
+    std::vector<std::string> message, availableAnswers = questionsHandler->getAvailableAnswers();
+    Question question = questionsHandler->getQuestion();
     std::string beggining, percentage;
     int incorrectIndex = 0;
     for (int i = 0; i < availableAnswers.size(); i++){

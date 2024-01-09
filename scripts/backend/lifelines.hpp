@@ -7,7 +7,7 @@
 
 class Lifeline{
 protected:
-    QuestionsHandler questionsHandler;
+    QuestionsHandler* questionsHandler;
 public:
     Lifeline();
     ~Lifeline();
