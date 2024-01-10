@@ -46,11 +46,6 @@
             "incorrect_answers": ["5", "7", "8"]
         },
         {
-            "question": "Who developed the theory of general relativity?",
-            "correct_answer": "Albert Einstein",
-            "incorrect_answers": ["Isaac Newton", "Niels Bohr", "Max Planck"]
-        },
-        {
             "question": "Which ocean is the largest?",
             "correct_answer": "Pacific Ocean",
             "incorrect_answers": ["Atlantic Ocean", "Indian Ocean", "Southern Ocean"]
