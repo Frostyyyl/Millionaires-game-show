@@ -154,7 +154,7 @@ std::string QuestionsHandler::getPrize(){ // goofy but enough
     case 5:
         return "20 000";
     case 6:
-        return "25 000";
+        return "35 000";
     case 7:
         return "50 000";
     case 8:
