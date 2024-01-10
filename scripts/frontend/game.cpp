@@ -37,7 +37,7 @@ void Game::init (){
 
     phoneFriend = new Sprite("images/friend_sprite.png", 60, 15);
     phoneQuestion = new TextSprite("images/phone_question.png", 240, 15, " ");
-    phoneAnswer = new TextSprite("images/phone_answer.png", 240, 210, " ");
+    phoneAnswer = new TextSprite("images/phone_answer.png", 60, 210, " ");
 
     TextSprite* percentA = new TextSprite("images/percentage_sprite.png", 60, 15, " ");
     TextSprite* percentB = new TextSprite("images/percentage_sprite.png", 60, 65, " ");

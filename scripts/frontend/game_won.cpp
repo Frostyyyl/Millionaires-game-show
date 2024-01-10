@@ -16,8 +16,8 @@ GameWon& GameWon::getInstance(){
 
 void GameWon::init (){
     backgroundGameWon = new Sprite("images/game_won_screen.png", 0, 0);
-    retryButtonGameWon = new Button("images/button_spritesheet.png", 395, 400, START_GAME); 
-    exitButtonGameWon = new Button("images/exit_button.png", 395, 550, EXIT); 
+    retryButtonGameWon = new Button("images/play_again_button.png", 300, 425, START_GAME); 
+    exitButtonGameWon = new Button("images/exit_button.png", 300, 550, EXIT); 
 }
 
 void GameWon::start(){

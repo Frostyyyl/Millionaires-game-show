@@ -16,8 +16,8 @@ MainMenu& MainMenu::getInstance(){
 
 void MainMenu::init (){
     backgroundMenu = new Sprite("images/background.png", 0, 0);
-    playButtonMenu = new Button("images/button_spritesheet.png", 395, 400, START_GAME); 
-    exitButtonMenu = new Button("images/exit_button.png", 395, 550, EXIT); 
+    playButtonMenu = new Button("images/play_button.png", 300, 425, START_GAME); 
+    exitButtonMenu = new Button("images/exit_button.png", 300, 550, EXIT); 
 }
 
 void MainMenu::start(){

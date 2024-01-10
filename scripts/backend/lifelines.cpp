@@ -86,7 +86,7 @@ std::string Phone::generateAnswer(int chosenAnswer, int knowledge){
     } else if (knowledge >= 45){
         beggining = "I don't know, but I would pick ";
     } else if (knowledge >= 35){
-        beggining = "I have no idea... I can't help You with that.\n";
+        beggining = "I have no idea...";
         return beggining;
     } else {
         std::cout << "ERROR: Something wrong with knowledge value" << std::endl;

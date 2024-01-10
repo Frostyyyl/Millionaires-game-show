@@ -16,8 +16,8 @@ GameOver& GameOver::getInstance(){
 
 void GameOver::init (){
     backgroundGameOver = new Sprite("images/game_over_screen.png", 0, 0);
-    retryButtonGameOver = new Button("images/button_spritesheet.png", 395, 400, START_GAME); 
-    exitButtonGameOver = new Button("images/exit_button.png", 395, 550, EXIT); 
+    retryButtonGameOver = new Button("images/retry_button.png", 300, 425, START_GAME); 
+    exitButtonGameOver = new Button("images/exit_button.png", 300, 550, EXIT); 
 }
 
 void GameOver::start(){
