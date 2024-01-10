@@ -25,14 +25,14 @@ std::vector<std::vector<struct Question>> loadJSON(const std::string filename){
         }
         return questions;
     }else{
-        std::cout << "Error. Couldn't open file: " << filename << std::endl;
+        std::cerr << "Error. Couldn't open file: " << filename << std::endl;
         return questions;
     }
 }
 
 QuestionsHandler::QuestionsHandler(const std::string filename){
     if (Instance!=nullptr){
-        std::cout << "ERROR: Questions Handler already exists!" << std::endl;
+        std::cerr << "ERROR: Questions Handler already exists!" << std::endl;
         exit(1);
     }
     Instance = this;
@@ -81,7 +81,7 @@ std::pair<std::string, std::vector<std::string>> QuestionsHandler::getNextQuesti
     } else if (questionCounter <= 10){
         tier = 2;
     } else {
-        std::cout << "ERROR: Game has been already won" << std::endl;
+        std::cerr << "ERROR: Game has been already won" << std::endl;
         exit(1);
     }
     this->drawQuestion();
@@ -172,7 +172,6 @@ std::string QuestionsHandler::getPrize(){ // goofy but enough
 #include <iostream>
 
 void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
-    std::cout << "here is backend got message" << std::endl;
     MessageType type = msg->getMessageType();
     switch (type)
     {{
@@ -187,7 +186,6 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
             int ans = std::get<0>(answerMsg->arguments);
             if(checkAnswer(ans)){
                 if(questionCounter == 10){ // if game completed
-                    std::cout << "Game won" << std::endl;
                     Bridge::getInstance().addMessage(FRONT_GAME_WON);
                 }
                 else{
@@ -196,7 +194,6 @@ void QuestionsHandler::processMessage(std::unique_ptr<BaseMessage> msg) {
                 }
             }
             else{
-                std::cout << "Game over, wrong answer" << std::endl;
                 Bridge::getInstance().addMessage(FRONT_GAME_OVER);
             }
         } else {

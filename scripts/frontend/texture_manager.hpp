@@ -8,7 +8,7 @@ public:
         SDL_Surface* tempSurface = IMG_Load(filename);
         SDL_Texture* tex = SDL_CreateTextureFromSurface(SceneManager::renderer, tempSurface);
         if(tex == nullptr){
-            std::cerr << "Couldn't load texture" << std::endl;
+            std::cerr << "ERROR: Couldn't load texture" << std::endl;
             exit(1);
         }
         SDL_FreeSurface(tempSurface);

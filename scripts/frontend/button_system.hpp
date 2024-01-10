@@ -47,7 +47,7 @@ public:
             Bridge::getInstance().addMessage(FRONT_EXIT);
             break;
         default:
-            std::cerr << "Failed to press a button" << std::endl;
+            std::cerr << "ERROR: Failed to press a button" << std::endl;
             break;
         }
     }

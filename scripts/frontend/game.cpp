@@ -15,7 +15,8 @@ Button* fiftyFiftyLifeline = nullptr;
 Sprite* phoneFriend = nullptr;
 TextSprite* phoneQuestion = nullptr;
 TextSprite* phoneAnswer = nullptr;
-std::vector<TextSprite*> percentages;
+MultipleTextSprite* percentagesFour;
+MultipleTextSprite* percentagesTwo;
 
 Game::Game(){}
 Game::~Game(){}
@@ -39,14 +40,8 @@ void Game::init (){
     phoneQuestion = new TextSprite("images/phone_question.png", 240, 15, " ");
     phoneAnswer = new TextSprite("images/phone_answer.png", 60, 210, " ");
 
-    TextSprite* percentA = new TextSprite("images/percentage_sprite.png", 60, 15, " ");
-    TextSprite* percentB = new TextSprite("images/percentage_sprite.png", 60, 65, " ");
-    TextSprite* percentC = new TextSprite("images/percentage_sprite.png", 60, 115, " ");
-    TextSprite* percentD = new TextSprite("images/percentage_sprite.png", 60, 165, " ");
-    percentages.emplace_back(percentA);
-    percentages.emplace_back(percentB);
-    percentages.emplace_back(percentC);
-    percentages.emplace_back(percentD);
+    percentagesFour = new MultipleTextSprite("images/percentages_four.png", 60, 15, " ", " ", " ", " ");
+    percentagesTwo = new MultipleTextSprite("images/percentages_two.png", 60, 15, " ", " ");
 
     TextButton* A = new TextButton("images/text_button_sprite.png", 60, 555, "A:", " ", 0);
     TextButton* B = new TextButton("images/text_button_sprite.png", 515, 555, "B:",  " ", 1);
@@ -88,7 +83,6 @@ void Game::clean(){
 }
 
 void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
-    std::cout << "here is game got message" << std::endl;
     MessageType type = msg->getMessageType();
     switch (type)
     {
@@ -111,14 +105,14 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
             SceneManager::getInstance().changeScene(GAME);
         }
         else{
-            std::cerr << "Error while reading Question from Message" << std::endl;
+            std::cerr << "ERROR: While reading Question from Message" << std::endl;
         }
         break;
     }
     case FRONT_PHONE:
-        for (int i = 0; i < 4; i++){
-            SceneManager::getInstance().objectManager.erase(percentages[i]);
-        }
+        SceneManager::getInstance().objectManager.erase(percentagesFour);
+        SceneManager::getInstance().objectManager.erase(percentagesTwo);
+
         if (auto questionMsg = dynamic_cast<Message<std::vector<std::string>>*>(msg.get())) {
             auto arguments = std::get<0>(questionMsg->arguments);
             phoneQuestion->loadData(arguments[0]);
@@ -130,19 +124,17 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
             SceneManager::getInstance().inputManager.erase(phoneLifeline);  
         }
         else{
-            std::cerr << "Error while reading Lifeline from Message" << std::endl;
+            std::cerr << "ERROR: While reading Lifeline from Message" << std::endl;
         }
         break;
     case FRONT_50_50:
-        for (int i = 0; i < 4; i++){
-            SceneManager::getInstance().objectManager.erase(percentages[i]);
-        }
+        SceneManager::getInstance().objectManager.erase(percentagesFour);
+        SceneManager::getInstance().objectManager.erase(percentagesTwo);
         SceneManager::getInstance().objectManager.erase(phoneFriend);
         SceneManager::getInstance().objectManager.erase(phoneQuestion);
         SceneManager::getInstance().objectManager.erase(phoneAnswer); 
         if (auto questionMsg = dynamic_cast<Message<std::vector<std::string>>*>(msg.get())) {
             std::vector<std::string> arguments = std::get<0>(questionMsg->arguments);
-            std::cout << answers[0] << " " << answers[1];
             answers[0]->loadData(arguments[0]);
             answers[1]->loadData(arguments[1]);
             SceneManager::getInstance().objectManager.erase(answers[2]);  
@@ -153,7 +145,7 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
             SceneManager::getInstance().inputManager.erase(fiftyFiftyLifeline);  
         }
         else{
-            std::cerr << "Error while reading Lifeline from Message" << std::endl;
+            std::cerr << "ERROR: While reading Lifeline from Message" << std::endl;
         }
         break;
     case FRONT_AUDIENCE:
@@ -162,19 +154,22 @@ void Game::processMessage(std::unique_ptr<BaseMessage> msg) {
         SceneManager::getInstance().objectManager.erase(phoneAnswer); 
         if (auto questionMsg = dynamic_cast<Message<std::vector<std::string>>*>(msg.get())) {
             auto arguments = std::get<0>(questionMsg->arguments);
-            for (int i = 0; i < arguments.size(); i++){
-                percentages[i]->loadData(arguments[i]);
-                SceneManager::getInstance().objectManager.addObject(percentages[i]);
+            if (arguments.size() == 4){
+                percentagesFour->loadData(arguments[0], arguments[1], arguments[2], arguments[3]);
+                SceneManager::getInstance().objectManager.addObject(percentagesFour);
+            } else {
+                percentagesTwo->loadData(arguments[0], arguments[1]);
+                SceneManager::getInstance().objectManager.addObject(percentagesTwo);
             }
             SceneManager::getInstance().objectManager.erase(audienceLifeline);  
             SceneManager::getInstance().inputManager.erase(audienceLifeline);  
         }
         else{
-            std::cerr << "Error while reading Lifeline from Message" << std::endl;
+            std::cerr << "ERROR: While reading Lifeline from Message" << std::endl;
         }
         break;
     default:
-        std::cerr << "Frontend could not process a message" << std::endl;
+        std::cerr << "ERROR: Frontend could not process a message" << std::endl;
         break;
     }
 }

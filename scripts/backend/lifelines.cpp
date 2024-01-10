@@ -12,7 +12,6 @@ Half& Half::getInstance(){
 
 std::vector<std::string> Half::interact(){
     Question question = QuestionsHandler::getInstance().getQuestion();
-    std::cout << question.correctAnswer << std::endl;
     std::vector<std::string> answers;
     answers.push_back(question.correctAnswer);
     std::uniform_int_distribution<int> rng(0, 2);
@@ -39,7 +38,7 @@ int Phone::setKnowledge(){
         std::uniform_int_distribution<int> rng(35,75);
         return rng(g);
     } else {
-        std::cout << "ERROR: Something wrong with tier" << std::endl;
+        std::cerr << "ERROR: Something wrong with tier" << std::endl;
         exit(1);
     }
 }
@@ -52,7 +51,7 @@ int Phone::chooseAnswer(bool returnCorrectAnswer){
         if (it != availableAnswers.end()){
             return std::distance(availableAnswers.begin(), it);
         } else {
-            std::cout << "ERROR: Cannot find correct answer in answers" << std::endl;
+            std::cerr << "ERROR: Cannot find correct answer in answers" << std::endl;
             exit(1);
         }
     } else {
@@ -89,7 +88,7 @@ std::string Phone::generateAnswer(int chosenAnswer, int knowledge){
         beggining = "I have no idea...";
         return beggining;
     } else {
-        std::cout << "ERROR: Something wrong with knowledge value" << std::endl;
+        std::cerr << "ERROR: Something wrong with knowledge value" << std::endl;
         exit(1);
     }
     if (chosenAnswer == 0){
@@ -101,7 +100,7 @@ std::string Phone::generateAnswer(int chosenAnswer, int knowledge){
     } else if (chosenAnswer == 3){
         answer = "D\n";
     } else {
-        std::cout << "ERROR: Something wrong with chosen Answer value" << std::endl;
+        std::cerr << "ERROR: Something wrong with chosen Answer value" << std::endl;
         exit(1);
     }
     return beggining + answer;
@@ -116,8 +115,6 @@ std::vector<std::string> Phone::interact(){
     } else {
         returnCorrectAnswer = false;
     }
-    std::cout << knowledge << '\n';
-    std::cout << returnCorrectAnswer << '\n';
     int chosenAnswer = this->chooseAnswer(returnCorrectAnswer);
     std::string prompt = generatePrompt();
     std::string answer = generateAnswer(chosenAnswer, knowledge);
@@ -139,7 +136,7 @@ int Audience::setCorrectPercentage(){
     } else if (availableAnswers.size() == 4){
         halved = false;
     } else{
-        std::cout << "ERROR: Something wrong with available answers size" << std::endl;
+        std::cerr << "ERROR: Something wrong with available answers size" << std::endl;
         exit(1);
     }
     if (tier == 0){
@@ -167,7 +164,7 @@ int Audience::setCorrectPercentage(){
             return rng(g);
         }
     } else {
-        std::cout << "ERROR: Something wrong with tier" << std::endl;
+        std::cerr << "ERROR: Something wrong with tier" << std::endl;
         exit(1);
     }
 }
@@ -187,7 +184,7 @@ std::vector<int> Audience::getIncorrectPercentages(int correctPercentage){
         }
         incorrectPercentages.push_back(leftPercentage);
     } else{
-        std::cout << "ERROR: Something wrong with available answers size" << std::endl;
+        std::cerr << "ERROR: Something wrong with available answers size" << std::endl;
         exit(1);
     }
     return incorrectPercentages;
@@ -208,7 +205,7 @@ std::vector<std::string> Audience::generateMessage(int correctPercentage, std::v
         } else if (i == 3){
             beggining = "D: ";
         } else {
-            std::cout << "ERROR: something wrong with available answers size" << std::endl;
+            std::cerr << "ERROR: something wrong with available answers size" << std::endl;
             exit(1);
         }
         if (availableAnswers[i] == question.correctAnswer){

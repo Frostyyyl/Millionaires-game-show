@@ -63,3 +63,24 @@ public:
     void draw() override;
     void destroy() override;
 };
+
+class MultipleTextSprite : public Spritesheet{
+private:
+    Text contentsA;
+    Text contentsB;
+    Text contentsC;
+    Text contentsD;
+    TTF_Font* font;
+    SDL_Texture* textTexture;
+    static const int MOVE_HORIZONTALLY = 10;
+    static const int MOVE_VERTICALLY = 0;
+public:
+    MultipleTextSprite(const char* filename, int x, int y, std::string A, std::string B, std::string C, std::string D, 
+                        int numOfColumns = 1, int numOfRows = 1);
+    MultipleTextSprite(const char* filename, int x, int y, std::string A, std::string B, 
+            int numOfColumns = 1, int numOfRows = 1);
+    void loadData(std::string A, std::string B);
+    void loadData(std::string A, std::string B, std::string C, std::string D);
+    void draw() override;
+    void destroy() override;
+};

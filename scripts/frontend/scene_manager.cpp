@@ -30,16 +30,16 @@ SceneManager& SceneManager::getInstance(){
 void SceneManager::init(const char* title, int xpos, int ypos, int width, int height){
     if(SDL_Init(SDL_INIT_EVERYTHING)){
         isRunning = false;
-        std::cout << "Game init error" << std::endl;
+        std::cerr << "ERROR: Game init error" << std::endl;
         exit(1);
     }
     if(IMG_Init(IMG_INIT_PNG) < 0){
-        std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
+        std::cerr << "ERROR: IMG_Init error: " << IMG_GetError() << std::endl;
         isRunning = false;
         exit(1);
     }
     if (TTF_Init() < 0) {
-        std::cout << "TTF_Init error: " << TTF_GetError() << std::endl;
+        std::cerr << "ERROR: TTF_Init error: " << TTF_GetError() << std::endl;
         isRunning = false;
         exit(1);
     
@@ -49,7 +49,7 @@ void SceneManager::init(const char* title, int xpos, int ypos, int width, int he
     
     window = SDL_CreateWindow(title, xpos, ypos, width, height, SDL_WINDOW_SHOWN);
     if (window == NULL){
-        std::cout << "Window creation error" << std::endl;
+        std::cerr << "ERROR: Window creation error" << std::endl;
         isRunning = false;
         exit(1);
     }
