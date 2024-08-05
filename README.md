@@ -8,4 +8,6 @@ As in the original, the game gets more difficult as the show goes on. The player
 "Phone a Friend" and "Ask the Audience" are designed not to always give the right answer. The harder the question the higher the chance for a mistake.
 
 ## Link to scientific circle
-[Ruch Projektantów Gier](https://www.facebook.com/ruchprojektantowgier)
+[Ruch Projektantów Gier](https://www.facebook.com/ruchprojektantowgier)<br /><br />
+
+<img src="images/Milionaires_readme.png" alt="drawing" width="750"/>
